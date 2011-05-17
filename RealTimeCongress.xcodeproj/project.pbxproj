@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A787EBB138310E8008EC17E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBA138310E8008EC17E /* UIKit.framework */; };
+		2A787EBD138310E8008EC17E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBC138310E8008EC17E /* Foundation.framework */; };
+		2A787EBF138310E8008EC17E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBE138310E8008EC17E /* CoreGraphics.framework */; };
+		2A787EC5138310E8008EC17E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A787EC3138310E8008EC17E /* InfoPlist.strings */; };
+		2A787EC8138310E8008EC17E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A787EC7138310E8008EC17E /* main.m */; };
+		2A787ECB138310E8008EC17E /* RealTimeCongressAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */; };
+		2A787ECE138310E8008EC17E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A787ECC138310E8008EC17E /* MainWindow.xib */; };
+		2A787ED1138310E8008EC17E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A787ED0138310E8008EC17E /* RootViewController.m */; };
+		2A787ED4138310E8008EC17E /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A787ED2138310E8008EC17E /* RootViewController.xib */; };
+		2A787EDB138310E8008EC17E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBA138310E8008EC17E /* UIKit.framework */; };
+		2A787EDC138310E8008EC17E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBC138310E8008EC17E /* Foundation.framework */; };
+		2A787EDD138310E8008EC17E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBE138310E8008EC17E /* CoreGraphics.framework */; };
+		2A787EE5138310E8008EC17E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A787EE3138310E8008EC17E /* InfoPlist.strings */; };
+		2A787EE8138310E8008EC17E /* RealTimeCongressTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 2A787EE7138310E8008EC17E /* RealTimeCongressTests.h */; };
+		2A787EEA138310E8008EC17E /* RealTimeCongressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A787EE9138310E8008EC17E /* RealTimeCongressTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A787EDE138310E8008EC17E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A787EAD138310E7008EC17E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A787EB5138310E8008EC17E;
+			remoteInfo = RealTimeCongress;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2A787EB6138310E8008EC17E /* RealTimeCongress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTimeCongress.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A787EBA138310E8008EC17E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2A787EBC138310E8008EC17E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2A787EBE138310E8008EC17E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2A787EC2138310E8008EC17E /* RealTimeCongress-Info.plist */ = {isa = PBXFileReference; path = "RealTimeCongress-Info.plist"; sourceTree = "<group>"; };
+		2A787EC4138310E8008EC17E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2A787EC6138310E8008EC17E /* RealTimeCongress-Prefix.pch */ = {isa = PBXFileReference; path = "RealTimeCongress-Prefix.pch"; sourceTree = "<group>"; };
+		2A787EC7138310E8008EC17E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A787EC9138310E8008EC17E /* RealTimeCongressAppDelegate.h */ = {isa = PBXFileReference; path = RealTimeCongressAppDelegate.h; sourceTree = "<group>"; };
+		2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeCongressAppDelegate.m; sourceTree = "<group>"; };
+		2A787ECD138310E8008EC17E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		2A787ECF138310E8008EC17E /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		2A787ED0138310E8008EC17E /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		2A787ED3138310E8008EC17E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		2A787EDA138310E8008EC17E /* RealTimeCongressTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealTimeCongressTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A787EE2138310E8008EC17E /* RealTimeCongressTests-Info.plist */ = {isa = PBXFileReference; path = "RealTimeCongressTests-Info.plist"; sourceTree = "<group>"; };
+		2A787EE4138310E8008EC17E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2A787EE6138310E8008EC17E /* RealTimeCongressTests-Prefix.pch */ = {isa = PBXFileReference; path = "RealTimeCongressTests-Prefix.pch"; sourceTree = "<group>"; };
+		2A787EE7138310E8008EC17E /* RealTimeCongressTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealTimeCongressTests.h; sourceTree = "<group>"; };
+		2A787EE9138310E8008EC17E /* RealTimeCongressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeCongressTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A787EB3138310E8008EC17E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EBB138310E8008EC17E /* UIKit.framework in Frameworks */,
+				2A787EBD138310E8008EC17E /* Foundation.framework in Frameworks */,
+				2A787EBF138310E8008EC17E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A787ED6138310E8008EC17E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EDB138310E8008EC17E /* UIKit.framework in Frameworks */,
+				2A787EDC138310E8008EC17E /* Foundation.framework in Frameworks */,
+				2A787EDD138310E8008EC17E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A787EAB138310E7008EC17E = {
+			isa = PBXGroup;
+			children = (
+				2A787EC0138310E8008EC17E /* RealTimeCongress */,
+				2A787EE0138310E8008EC17E /* RealTimeCongressTests */,
+				2A787EB9138310E8008EC17E /* Frameworks */,
+				2A787EB7138310E8008EC17E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A787EB7138310E8008EC17E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EB6138310E8008EC17E /* RealTimeCongress.app */,
+				2A787EDA138310E8008EC17E /* RealTimeCongressTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A787EB9138310E8008EC17E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EBA138310E8008EC17E /* UIKit.framework */,
+				2A787EBC138310E8008EC17E /* Foundation.framework */,
+				2A787EBE138310E8008EC17E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2A787EC0138310E8008EC17E /* RealTimeCongress */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EC9138310E8008EC17E /* RealTimeCongressAppDelegate.h */,
+				2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */,
+				2A787ECC138310E8008EC17E /* MainWindow.xib */,
+				2A787ECF138310E8008EC17E /* RootViewController.h */,
+				2A787ED0138310E8008EC17E /* RootViewController.m */,
+				2A787ED2138310E8008EC17E /* RootViewController.xib */,
+				2A787EC1138310E8008EC17E /* Supporting Files */,
+			);
+			path = RealTimeCongress;
+			sourceTree = "<group>";
+		};
+		2A787EC1138310E8008EC17E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EC2138310E8008EC17E /* RealTimeCongress-Info.plist */,
+				2A787EC3138310E8008EC17E /* InfoPlist.strings */,
+				2A787EC6138310E8008EC17E /* RealTimeCongress-Prefix.pch */,
+				2A787EC7138310E8008EC17E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2A787EE0138310E8008EC17E /* RealTimeCongressTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EE7138310E8008EC17E /* RealTimeCongressTests.h */,
+				2A787EE9138310E8008EC17E /* RealTimeCongressTests.m */,
+				2A787EE1138310E8008EC17E /* Supporting Files */,
+			);
+			path = RealTimeCongressTests;
+			sourceTree = "<group>";
+		};
+		2A787EE1138310E8008EC17E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2A787EE2138310E8008EC17E /* RealTimeCongressTests-Info.plist */,
+				2A787EE3138310E8008EC17E /* InfoPlist.strings */,
+				2A787EE6138310E8008EC17E /* RealTimeCongressTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A787EB5138310E8008EC17E /* RealTimeCongress */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A787EED138310E8008EC17E /* Build configuration list for PBXNativeTarget "RealTimeCongress" */;
+			buildPhases = (
+				2A787EB2138310E8008EC17E /* Sources */,
+				2A787EB3138310E8008EC17E /* Frameworks */,
+				2A787EB4138310E8008EC17E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RealTimeCongress;
+			productName = RealTimeCongress;
+			productReference = 2A787EB6138310E8008EC17E /* RealTimeCongress.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2A787ED9138310E8008EC17E /* RealTimeCongressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A787EF0138310E8008EC17E /* Build configuration list for PBXNativeTarget "RealTimeCongressTests" */;
+			buildPhases = (
+				2A787ED5138310E8008EC17E /* Sources */,
+				2A787ED6138310E8008EC17E /* Frameworks */,
+				2A787ED7138310E8008EC17E /* Resources */,
+				2A787ED8138310E8008EC17E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2A787EDF138310E8008EC17E /* PBXTargetDependency */,
+			);
+			name = RealTimeCongressTests;
+			productName = RealTimeCongressTests;
+			productReference = 2A787EDA138310E8008EC17E /* RealTimeCongressTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A787EAD138310E7008EC17E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Sunlight Labs";
+			};
+			buildConfigurationList = 2A787EB0138310E7008EC17E /* Build configuration list for PBXProject "RealTimeCongress" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2A787EAB138310E7008EC17E;
+			productRefGroup = 2A787EB7138310E8008EC17E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A787EB5138310E8008EC17E /* RealTimeCongress */,
+				2A787ED9138310E8008EC17E /* RealTimeCongressTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A787EB4138310E8008EC17E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EC5138310E8008EC17E /* InfoPlist.strings in Resources */,
+				2A787ECE138310E8008EC17E /* MainWindow.xib in Resources */,
+				2A787ED4138310E8008EC17E /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A787ED7138310E8008EC17E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EE5138310E8008EC17E /* InfoPlist.strings in Resources */,
+				2A787EE8138310E8008EC17E /* RealTimeCongressTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A787ED8138310E8008EC17E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A787EB2138310E8008EC17E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EC8138310E8008EC17E /* main.m in Sources */,
+				2A787ECB138310E8008EC17E /* RealTimeCongressAppDelegate.m in Sources */,
+				2A787ED1138310E8008EC17E /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A787ED5138310E8008EC17E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A787EEA138310E8008EC17E /* RealTimeCongressTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2A787EDF138310E8008EC17E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A787EB5138310E8008EC17E /* RealTimeCongress */;
+			targetProxy = 2A787EDE138310E8008EC17E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2A787EC3138310E8008EC17E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A787EC4138310E8008EC17E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2A787ECC138310E8008EC17E /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A787ECD138310E8008EC17E /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		2A787ED2138310E8008EC17E /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A787ED3138310E8008EC17E /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		2A787EE3138310E8008EC17E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A787EE4138310E8008EC17E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2A787EEB138310E8008EC17E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2A787EEC138310E8008EC17E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		2A787EEE138310E8008EC17E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RealTimeCongress/RealTimeCongress-Prefix.pch";
+				INFOPLIST_FILE = "RealTimeCongress/RealTimeCongress-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2A787EEF138310E8008EC17E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RealTimeCongress/RealTimeCongress-Prefix.pch";
+				INFOPLIST_FILE = "RealTimeCongress/RealTimeCongress-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2A787EF1138310E8008EC17E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RealTimeCongress.app/RealTimeCongress";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RealTimeCongressTests/RealTimeCongressTests-Prefix.pch";
+				INFOPLIST_FILE = "RealTimeCongressTests/RealTimeCongressTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2A787EF2138310E8008EC17E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RealTimeCongress.app/RealTimeCongress";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RealTimeCongressTests/RealTimeCongressTests-Prefix.pch";
+				INFOPLIST_FILE = "RealTimeCongressTests/RealTimeCongressTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A787EB0138310E7008EC17E /* Build configuration list for PBXProject "RealTimeCongress" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A787EEB138310E8008EC17E /* Debug */,
+				2A787EEC138310E8008EC17E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A787EED138310E8008EC17E /* Build configuration list for PBXNativeTarget "RealTimeCongress" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A787EEE138310E8008EC17E /* Debug */,
+				2A787EEF138310E8008EC17E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2A787EF0138310E8008EC17E /* Build configuration list for PBXNativeTarget "RealTimeCongressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A787EF1138310E8008EC17E /* Debug */,
+				2A787EF2138310E8008EC17E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A787EAD138310E7008EC17E /* Project object */;
+}
