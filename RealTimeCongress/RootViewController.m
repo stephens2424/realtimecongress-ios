@@ -1,4 +1,5 @@
 #import "RootViewController.h"
+#import "AboutViewController.h"
 
 @implementation RootViewController
 @synthesize sectionNames;
@@ -31,6 +32,7 @@
 {
     [super viewDidLoad];
     self.title = @"Main Menu";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,8 +98,15 @@
     UITableViewController *whipController = [[UITableViewController alloc] initWithNibName:@"WhipNoticeViewController" bundle:nil];
     // ...
     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:whipController animated:YES];
-    [whipController release];
+    if (indexPath.row == 4) {
+        AboutViewController *aboutController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil]; 
+        [self.navigationController pushViewController:aboutController animated:YES];
+        [aboutController release];
+    }
+    else {
+        [self.navigationController pushViewController:whipController animated:YES];
+        [whipController release];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		284C060D138BFCFE00ED309D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284C060B138BFCFE00ED309D /* AboutViewController.m */; };
+		284C060E138BFCFE00ED309D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284C060C138BFCFE00ED309D /* AboutViewController.xib */; };
+		284C0611138C21C600ED309D /* AboutInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 284C0610138C21C600ED309D /* AboutInfo.html */; };
 		2A787EBB138310E8008EC17E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBA138310E8008EC17E /* UIKit.framework */; };
 		2A787EBD138310E8008EC17E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBC138310E8008EC17E /* Foundation.framework */; };
 		2A787EBF138310E8008EC17E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBE138310E8008EC17E /* CoreGraphics.framework */; };
@@ -119,6 +122,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		284C060A138BFCFE00ED309D /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		284C060B138BFCFE00ED309D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		284C060C138BFCFE00ED309D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		284C0610138C21C600ED309D /* AboutInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutInfo.html; sourceTree = "<group>"; };
 		2A787EB6138310E8008EC17E /* Congress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Congress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A787EBA138310E8008EC17E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2A787EBC138310E8008EC17E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -294,6 +301,9 @@
 				2AAA21991385701000680E9B /* WhipNoticeViewController.h */,
 				2AAA219A1385701000680E9B /* WhipNoticeViewController.m */,
 				2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */,
+				284C060A138BFCFE00ED309D /* AboutViewController.h */,
+				284C060B138BFCFE00ED309D /* AboutViewController.m */,
+				284C060C138BFCFE00ED309D /* AboutViewController.xib */,
 			);
 			path = RealTimeCongress;
 			sourceTree = "<group>";
@@ -332,6 +342,7 @@
 		2A787EF9138324D1008EC17E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				284C0610138C21C600ED309D /* AboutInfo.html */,
 				2A787EFA138324D1008EC17E /* 08-chat.png */,
 				2A787EFB138324D1008EC17E /* 08-chat@2x.png */,
 				2A787EFC138324D1008EC17E /* 09-chat-2.png */,
@@ -573,6 +584,8 @@
 				2A787F9A138324D1008EC17E /* 96-book@2x.png in Resources */,
 				2A787F9B138324D1008EC17E /* appIcon.png in Resources */,
 				2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */,
+				284C060E138BFCFE00ED309D /* AboutViewController.xib in Resources */,
+				284C0611138C21C600ED309D /* AboutInfo.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +625,7 @@
 				2A787ECB138310E8008EC17E /* RealTimeCongressAppDelegate.m in Sources */,
 				2A787ED1138310E8008EC17E /* RootViewController.m in Sources */,
 				2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */,
+				284C060D138BFCFE00ED309D /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
