@@ -109,6 +109,9 @@
 		2A787F9B138324D1008EC17E /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A787F4A138324D1008EC17E /* appIcon.png */; };
 		2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA219A1385701000680E9B /* WhipNoticeViewController.m */; };
 		2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */; };
+		DCF4750C139AAFA500803EF5 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = DCF474F2139AAFA500803EF5 /* CHANGELOG.md */; };
+		DCF4750D139AAFA500803EF5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF474F4139AAFA500803EF5 /* JSONKit.m */; };
+		DCF4750E139AAFA500803EF5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DCF474F5139AAFA500803EF5 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,6 +234,10 @@
 		2AAA21991385701000680E9B /* WhipNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhipNoticeViewController.h; sourceTree = "<group>"; };
 		2AAA219A1385701000680E9B /* WhipNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhipNoticeViewController.m; sourceTree = "<group>"; };
 		2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhipNoticeViewController.xib; sourceTree = "<group>"; };
+		DCF474F2139AAFA500803EF5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		DCF474F3139AAFA500803EF5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		DCF474F4139AAFA500803EF5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		DCF474F5139AAFA500803EF5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +267,7 @@
 		2A787EAB138310E7008EC17E = {
 			isa = PBXGroup;
 			children = (
+				DCF474CC139AAFA400803EF5 /* JSONKit */,
 				2A787EF6138311BF008EC17E /* README.md */,
 				2A787EC0138310E8008EC17E /* RealTimeCongress */,
 				2A787EE0138310E8008EC17E /* RealTimeCongressTests */,
@@ -428,6 +436,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		DCF474CC139AAFA400803EF5 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				DCF474F2139AAFA500803EF5 /* CHANGELOG.md */,
+				DCF474F3139AAFA500803EF5 /* JSONKit.h */,
+				DCF474F4139AAFA500803EF5 /* JSONKit.m */,
+				DCF474F5139AAFA500803EF5 /* README.md */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -586,6 +605,8 @@
 				2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */,
 				284C060E138BFCFE00ED309D /* AboutViewController.xib in Resources */,
 				284C0611138C21C600ED309D /* AboutInfo.html in Resources */,
+				DCF4750C139AAFA500803EF5 /* CHANGELOG.md in Resources */,
+				DCF4750E139AAFA500803EF5 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +647,7 @@
 				2A787ED1138310E8008EC17E /* RootViewController.m in Sources */,
 				2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */,
 				284C060D138BFCFE00ED309D /* AboutViewController.m in Sources */,
+				DCF4750D139AAFA500803EF5 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
