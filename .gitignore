@@ -8,3 +8,7 @@ build/
 *.perspective
 *.perspectivev3
 xcuserdata
+
+RealTimeCongress.xcodeproj/APIKeys.plist
+
+Documentation
