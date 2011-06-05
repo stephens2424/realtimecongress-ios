@@ -43,6 +43,12 @@ Time to really harness the features of iOS and think outside the box:
 * iPad interface
 * ???
 
+## Build Instructions
+
+### API Key
+
+You need to find the file APIKeys.example.plist. It is within the Xcode project file (secondary click it, and choose Show Package Contents). *Duplicate* the plist file and remove the .example portion of the filename. Open the file and replace YOUR API KEY HERE with your API Key. You can register for an API Key here: [http://services.sunlightlabs.com/accounts/register/](http://services.sunlightlabs.com/accounts/register/).
+
 ## Google Summer of Code
 
 GSoC students applying for this project should expect to work on Phases 2 and 3. Phase 1 should be mostly complete by May 23, the beginning of Google Summer of Code. A strong applicant will demonstrate real-world experience with iOS plus an understanding of the mission and activities of Sunlight Labs. More ideas are encouraged for Phase 3. Applicants should be creative, self-directed, and entrepreneurial. Strong communication skills are a must.
