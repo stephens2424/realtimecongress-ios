@@ -7,6 +7,7 @@
 //
 
 #import "FloorUpdateViewController.h"
+#import "FloorUpdate.h"
 #import "SunlightLabsRequest.h"
 
 @implementation FloorUpdateViewController
@@ -35,7 +36,19 @@
 
 - (void)receiveFloorUpdate:(NSNotification *)notification {
     NSDictionary * userInfo = [notification userInfo];
-    [floorUpdates addObjectsFromArray:[userInfo objectForKey:@"floor_updates"]];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    NSMutableString * floorUpdateText = [NSMutableString stringWithCapacity:100];
+    for (id update in [userInfo objectForKey:@"floor_updates"]) {
+        NSDate * date = [dateFormatter dateFromString:[update objectForKey:@"timestamp"]];
+        for (id str in [update objectForKey:@"events"]) {
+            [floorUpdateText appendFormat:@"%@\n\n",str];
+        }
+        [floorUpdates addObject:[[[FloorUpdate alloc] initWithDisplayText:floorUpdateText atDate:date] autorelease]];
+        [floorUpdateText setString:@""];
+    }
     [self.tableView reloadData];
 }
 
@@ -92,28 +105,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [floorUpdates count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [[floorUpdates objectAtIndex:indexPath.row] textHeight] + 20;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"FloorUpdateCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"FloorUpdateTableViewCell" owner:tableView options:nil] objectAtIndex:0];
     }
     
-    cell.textLabel.text = [[[floorUpdates objectAtIndex:indexPath.row] objectForKey:@"events"] lastObject];
+    [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] displayDate]];
+    [(UITextView *)[cell viewWithTag:2] setText:[[floorUpdates objectAtIndex:indexPath.row] displayText]];
+    [(UITextView *)[cell viewWithTag:2] setFrame:CGRectMake([cell viewWithTag:2].frame.origin.x, [cell viewWithTag:2].frame.origin.y, [cell viewWithTag:2].frame.size.width,[[floorUpdates objectAtIndex:indexPath.row] textHeight])];
     
     return cell;
 }

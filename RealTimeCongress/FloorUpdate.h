@@ -11,7 +11,19 @@
 
 @interface FloorUpdate : NSObject {
 @private
-    
+    NSString * _displayText;
+    NSString * _displayTextWithDate;
+    NSDate * _date;
+    NSString * _displayDate;
+    CGFloat _textHeight;
 }
+
+@property (readonly) NSString * displayText;
+@property (readonly) NSDate * date;
+@property (readonly) NSString * displayDate;
+@property (readonly) NSString * displayTextWithDate;
+@property (readonly) CGFloat textHeight;
+
+- (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date;
 
 @end

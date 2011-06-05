@@ -116,6 +116,7 @@
 		DC20A239139B5E0000CDF09C /* FloorUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A237139B5E0000CDF09C /* FloorUpdateViewController.m */; };
 		DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */; };
 		DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC7B29C0139AB27500BC803C /* APIKeys.plist */; };
+		DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */; };
 		DCF4750D139AAFA500803EF5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF474F4139AAFA500803EF5 /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +252,7 @@
 		DC20A237139B5E0000CDF09C /* FloorUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloorUpdateViewController.m; sourceTree = "<group>"; };
 		DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateViewController.xib; sourceTree = "<group>"; };
 		DC7B29C0139AB27500BC803C /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APIKeys.plist; path = RealTimeCongress.xcodeproj/APIKeys.plist; sourceTree = SOURCE_ROOT; };
+		DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateTableViewCell.xib; sourceTree = "<group>"; };
 		DCF474F2139AAFA500803EF5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		DCF474F3139AAFA500803EF5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		DCF474F4139AAFA500803EF5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				2A787EC9138310E8008EC17E /* RealTimeCongressAppDelegate.h */,
 				DC20A236139B5E0000CDF09C /* FloorUpdateViewController.h */,
 				DC20A237139B5E0000CDF09C /* FloorUpdateViewController.m */,
+				DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */,
 				DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */,
 				2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */,
 				2A787ECC138310E8008EC17E /* MainWindow.xib */,
@@ -652,6 +655,7 @@
 				284C0611138C21C600ED309D /* AboutInfo.html in Resources */,
 				DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */,
 				DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */,
+				DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
