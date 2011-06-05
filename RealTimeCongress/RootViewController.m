@@ -1,5 +1,6 @@
 #import "RootViewController.h"
 #import "AboutViewController.h"
+#import "FloorUpdateViewController.h"
 
 @implementation RootViewController
 @synthesize sectionNames;
@@ -95,15 +96,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewController *whipController = [[UITableViewController alloc] initWithNibName:@"WhipNoticeViewController" bundle:nil];
     // ...
     // Pass the selected object to the new view controller.
     if (indexPath.row == 4) {
         AboutViewController *aboutController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil]; 
         [self.navigationController pushViewController:aboutController animated:YES];
         [aboutController release];
+    } else if (indexPath.row == 0) {
+        FloorUpdateViewController *floorUpdateController = [[FloorUpdateViewController alloc] initWithNibName:@"FloorUpdateViewController" bundle:nil];
+        [self.navigationController pushViewController:floorUpdateController animated:YES];
+        [floorUpdateController release];
     }
     else {
+        UITableViewController *whipController = [[UITableViewController alloc] initWithNibName:@"WhipNoticeViewController" bundle:nil];
         [self.navigationController pushViewController:whipController animated:YES];
         [whipController release];
     }

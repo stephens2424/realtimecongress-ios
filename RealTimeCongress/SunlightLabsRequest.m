@@ -15,7 +15,7 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
 
 @synthesize requestType = _requestType;
 @synthesize api = _api;
-@synthesize request = _request;
+@synthesize request = _urlRequest;
 
 + (NSMutableString *)basePathFromRequestType:(APICollection)requestType {
     switch (requestType) {
@@ -75,7 +75,7 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
             return SunlightCongressAPI;
             break;
         default:
-            return nil;
+            return InvalidAPI;
             break;
     }
 }
@@ -85,15 +85,19 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
     if (self) {
         _requestCollection = apiCollection;
         _api = [SunlightLabsRequest APIFromRequestType:apiCollection];
-        NSMutableString * requestURLString = [SunlightLabsRequest basePathFromRequestType:apiCollection];
+        NSMutableString * requestURLString = [[SunlightLabsRequest basePathFromRequestType:apiCollection] retain];
         if (apiMethod) [requestURLString appendFormat:@".%@",apiMethod];
         [requestURLString appendString:@".json?"];
-        for (NSString * key in parameters) {
-            [requestURLString appendFormat:@"%@=%@&",key,[parameters objectForKey:key]];
+        //the following line appends the apikey to the url. here for debugging purposes. the line to add the apikey to the header is commented out below
+        [requestURLString appendFormat:@"apikey=%@&",[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"]];
+        if (parameters) {
+            for (NSString * key in parameters) {
+                [requestURLString appendFormat:@"%@=%@&",key,[parameters objectForKey:key]];
+            }
         }
-        _request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestURLString]];
+        _urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestURLString]];
         [requestURLString release];
-        [_request addValue:[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"] forHTTPHeaderField:@"X-APIKEY"];
+        //[_urlRequest addValue:[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"] forHTTPHeaderField:@"X-APIKEY"];
     }
     return self;
 }
@@ -109,7 +113,7 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
 }
 - (void)dealloc
 {
-    [_request release];
+    [_urlRequest release];
     [super dealloc];
 }
 

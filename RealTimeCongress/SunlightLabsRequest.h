@@ -16,12 +16,13 @@ typedef enum {
     FloorUpdates,
     CommitteeHearings,
     Documents,
-    Legislators
+    Legislators,
 } APICollection;
 
 typedef enum {
     RealTimeCongressAPI,
-    SunlightCongressAPI
+    SunlightCongressAPI,
+    InvalidAPI
 } API;
 
 /**
@@ -31,7 +32,7 @@ typedef enum {
 @private
     APICollection _requestCollection;
     API _api;
-    NSMutableURLRequest * _request;
+    NSMutableURLRequest * _urlRequest;
 }
 
 /**
@@ -55,5 +56,6 @@ typedef enum {
 
 - (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters;
 - (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters multiple:(BOOL)multiple;
+- (id)initFloorUpdateRequestWithParameters:(NSDictionary *)parameters;
 
 @end

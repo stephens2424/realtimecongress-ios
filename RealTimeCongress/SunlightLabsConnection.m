@@ -7,6 +7,7 @@
 //
 
 #import "SunlightLabsConnection.h"
+#import "SunlightLabsRequest.h"
 #import "JSONKit.h"
 
 @implementation SunlightLabsConnection
@@ -16,11 +17,13 @@
     if (self) {
         _request = [request retain];
         _receivedData = [[NSMutableData alloc] initWithCapacity:10];
-        [NSURLConnection connectionWithRequest:[request request] delegate:self];
     }
     return self;
 }
 
+- (void)sendRequest {
+    [NSURLConnection connectionWithRequest:[_request request] delegate:self];
+}
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_receivedData appendData:data];
 }
@@ -28,10 +31,8 @@
     NSLog(@"Sunlight Labs Connection did fail with error:%@",error);
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [connection release];
-    NSDictionary * decodedData = [[JSONDecoder decoder] parseJSONData:_receivedData];
-    NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:decodedData,@"decodedData", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:userInfo];
+    NSDictionary * decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:decodedData];
 }
 
 - (void)dealloc
