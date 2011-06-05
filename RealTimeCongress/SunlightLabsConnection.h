@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SunlightLabsRequest.h"
 
+static NSString * SunglightLabsRequestFinishedNotification = @"SunglightLabsRequestFinishedNotification";
+
 @interface SunlightLabsConnection : NSObject {
 @private
     SunlightLabsRequest * _request;

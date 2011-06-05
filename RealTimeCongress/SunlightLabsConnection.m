@@ -7,7 +7,7 @@
 //
 
 #import "SunlightLabsConnection.h"
-
+#import "JSONKit.h"
 
 @implementation SunlightLabsConnection
 
@@ -29,7 +29,9 @@
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [connection release];
-#warning incomplete method. handle interpreting received data
+    NSDictionary * decodedData = [[JSONDecoder decoder] parseJSONData:_receivedData];
+    NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:decodedData,@"decodedData", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:userInfo];
 }
 
 - (void)dealloc

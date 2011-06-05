@@ -9,33 +9,51 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    Bills = 1,
-    Votes = 2,
-    Amendments = 3,
-    Videos = 4,
-    FloorUpdates = 5,
-    CommitteeHearings = 6,
-    Documents = 7
-} SunlightLabsRequestType;
+    Bills,
+    Votes,
+    Amendments,
+    Videos,
+    FloorUpdates,
+    CommitteeHearings,
+    Documents,
+    Legislators
+} APICollection;
+
+typedef enum {
+    RealTimeCongressAPI,
+    SunlightCongressAPI
+} API;
 
 /**
  A request object to be used with SunlightLabsConnection.
  */
 @interface SunlightLabsRequest : NSObject {
 @private
-    SunlightLabsRequestType _requestType;
+    APICollection _requestCollection;
+    API _api;
     NSMutableURLRequest * _request;
 }
 
-@property (readonly) SunlightLabsRequestType requestType;
+/**
+ The type of request to be sent.
+ */
+@property (readonly) APICollection requestType;
+/**
+ The API to which the request will be sent.
+ */
+@property (readonly) API api;
 @property (readonly) NSURLRequest * request;
 
 /**
  Initializes a SunlightLabsReqeust of the given type with the given parameters.
  @param parameters A dictionary containing the query parameters that will become part of the request URL.
- @param requestType The type of request.
+ @param apiCollection The API Collection the request will call (e.g. Bills, Legislators).
+ @param apiMethod The API method the request will call (e.g. getList). If using an API without method calls, like RealTimeCongress, use nil.
  @return A SunglightLabsRequest object.
  */
-- (id)initWithParameterDictionary:(NSDictionary *)parameters requestType:(SunlightLabsRequestType)requestType;
+- (id)initRequestWithParameterDictionary:(NSDictionary *)parameters APICollection:(APICollection)apiCollection APIMethod:(NSString *)apiMethod;
+
+- (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters;
+- (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters multiple:(BOOL)multiple;
 
 @end
