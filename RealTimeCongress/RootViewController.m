@@ -1,5 +1,6 @@
 #import "RootViewController.h"
 #import "AboutViewController.h"
+#import "CommitteeHearingsViewController.h"
 
 @implementation RootViewController
 @synthesize sectionNames;
@@ -98,15 +99,26 @@
     UITableViewController *whipController = [[UITableViewController alloc] initWithNibName:@"WhipNoticeViewController" bundle:nil];
     // ...
     // Pass the selected object to the new view controller.
+    
+    if (indexPath.row == 1) {
+        [self.navigationController pushViewController:whipController animated:YES];
+        [whipController release];
+    }
+    
+    if (indexPath.row == 2) {
+        // Pushes the Committee Hearings view controller
+        CommitteeHearingsViewController *hearingsController = [[CommitteeHearingsViewController alloc] initWithNibName:@"CommitteeHearingsViewController" bundle:nil];
+        [self.navigationController pushViewController:hearingsController animated:YES];
+        [hearingsController release];
+    }
+    
     if (indexPath.row == 4) {
+        // Pushes the About Screen view controller
         AboutViewController *aboutController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil]; 
         [self.navigationController pushViewController:aboutController animated:YES];
         [aboutController release];
     }
-    else {
-        [self.navigationController pushViewController:whipController animated:YES];
-        [whipController release];
-    }
+    
 }
 
 - (void)didReceiveMemoryWarning

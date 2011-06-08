@@ -10,6 +10,11 @@
 		284C060D138BFCFE00ED309D /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284C060B138BFCFE00ED309D /* AboutViewController.m */; };
 		284C060E138BFCFE00ED309D /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284C060C138BFCFE00ED309D /* AboutViewController.xib */; };
 		284C0611138C21C600ED309D /* AboutInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 284C0610138C21C600ED309D /* AboutInfo.html */; };
+		28BC5826139AA0BC00EBA6BE /* CommitteeHearingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BC5821139AA0BB00EBA6BE /* CommitteeHearingsCell.m */; };
+		28BC5827139AA0BC00EBA6BE /* CommitteeHearingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BC5822139AA0BB00EBA6BE /* CommitteeHearingsCell.xib */; };
+		28BC5828139AA0BC00EBA6BE /* CommitteeHearingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BC5824139AA0BB00EBA6BE /* CommitteeHearingsViewController.m */; };
+		28BC5829139AA0BC00EBA6BE /* CommitteeHearingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BC5825139AA0BC00EBA6BE /* CommitteeHearingsViewController.xib */; };
+		28BC582D139AA0D100EBA6BE /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 28BC582C139AA0D100EBA6BE /* JSONKit.m */; };
 		2A787EBB138310E8008EC17E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBA138310E8008EC17E /* UIKit.framework */; };
 		2A787EBD138310E8008EC17E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBC138310E8008EC17E /* Foundation.framework */; };
 		2A787EBF138310E8008EC17E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A787EBE138310E8008EC17E /* CoreGraphics.framework */; };
@@ -126,6 +131,14 @@
 		284C060B138BFCFE00ED309D /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		284C060C138BFCFE00ED309D /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		284C0610138C21C600ED309D /* AboutInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutInfo.html; sourceTree = "<group>"; };
+		28BC5820139AA0BB00EBA6BE /* CommitteeHearingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitteeHearingsCell.h; sourceTree = "<group>"; };
+		28BC5821139AA0BB00EBA6BE /* CommitteeHearingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitteeHearingsCell.m; sourceTree = "<group>"; };
+		28BC5822139AA0BB00EBA6BE /* CommitteeHearingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitteeHearingsCell.xib; sourceTree = "<group>"; };
+		28BC5823139AA0BB00EBA6BE /* CommitteeHearingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitteeHearingsViewController.h; sourceTree = "<group>"; };
+		28BC5824139AA0BB00EBA6BE /* CommitteeHearingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitteeHearingsViewController.m; sourceTree = "<group>"; };
+		28BC5825139AA0BC00EBA6BE /* CommitteeHearingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitteeHearingsViewController.xib; sourceTree = "<group>"; };
+		28BC582B139AA0D100EBA6BE /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		28BC582C139AA0D100EBA6BE /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		2A787EB6138310E8008EC17E /* Congress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Congress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A787EBA138310E8008EC17E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2A787EBC138310E8008EC17E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -291,6 +304,12 @@
 		2A787EC0138310E8008EC17E /* RealTimeCongress */ = {
 			isa = PBXGroup;
 			children = (
+				28BC5820139AA0BB00EBA6BE /* CommitteeHearingsCell.h */,
+				28BC5821139AA0BB00EBA6BE /* CommitteeHearingsCell.m */,
+				28BC5822139AA0BB00EBA6BE /* CommitteeHearingsCell.xib */,
+				28BC5823139AA0BB00EBA6BE /* CommitteeHearingsViewController.h */,
+				28BC5824139AA0BB00EBA6BE /* CommitteeHearingsViewController.m */,
+				28BC5825139AA0BC00EBA6BE /* CommitteeHearingsViewController.xib */,
 				2A787EC9138310E8008EC17E /* RealTimeCongressAppDelegate.h */,
 				2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */,
 				2A787ECC138310E8008EC17E /* MainWindow.xib */,
@@ -342,6 +361,8 @@
 		2A787EF9138324D1008EC17E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				28BC582B139AA0D100EBA6BE /* JSONKit.h */,
+				28BC582C139AA0D100EBA6BE /* JSONKit.m */,
 				284C0610138C21C600ED309D /* AboutInfo.html */,
 				2A787EFA138324D1008EC17E /* 08-chat.png */,
 				2A787EFB138324D1008EC17E /* 08-chat@2x.png */,
@@ -586,6 +607,8 @@
 				2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */,
 				284C060E138BFCFE00ED309D /* AboutViewController.xib in Resources */,
 				284C0611138C21C600ED309D /* AboutInfo.html in Resources */,
+				28BC5827139AA0BC00EBA6BE /* CommitteeHearingsCell.xib in Resources */,
+				28BC5829139AA0BC00EBA6BE /* CommitteeHearingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +649,9 @@
 				2A787ED1138310E8008EC17E /* RootViewController.m in Sources */,
 				2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */,
 				284C060D138BFCFE00ED309D /* AboutViewController.m in Sources */,
+				28BC5826139AA0BC00EBA6BE /* CommitteeHearingsCell.m in Sources */,
+				28BC5828139AA0BC00EBA6BE /* CommitteeHearingsViewController.m in Sources */,
+				28BC582D139AA0D100EBA6BE /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
