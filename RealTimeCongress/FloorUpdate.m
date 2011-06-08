@@ -11,19 +11,21 @@
 
 @implementation FloorUpdate
 
-#define kTextViewFontSize        18.0
+#define kTextViewFontSize        17.0 //This matches the height of the text view in the nib (FloorUpdateTableViewCell.xib)
 
 @synthesize displayText = _displayText;
 @synthesize date = _date;
 @synthesize displayDate = _displayDate;
 @synthesize displayTextWithDate = _displayTextWithDate;
 @synthesize textHeight = _textHeight;
+@synthesize textViewHeightRequired;
 
 - (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date {
     self = [super init];
     if (self) {
         _displayText = [text copy];
         _date = [date copy];
+        _textHeight = -1;
     }
     return self;
 }
@@ -31,7 +33,7 @@
 - (NSString *)displayTextWithDate {
     if (!_displayTextWithDate) {
         NSDateFormatter * dateFormatPrinter = [[NSDateFormatter alloc] init];
-        [dateFormatPrinter setDateFormat:@"MMMM dd, yyyy HH:mm aa"];
+        [dateFormatPrinter setDateFormat:@"MMMM dd, yyyy hh:mm aa"];
         [dateFormatPrinter setTimeZone:[NSTimeZone systemTimeZone]];
         _displayTextWithDate = [[NSString alloc] initWithFormat:@"%@\n%@",[dateFormatPrinter stringFromDate:_date],_displayText];
     }
@@ -41,7 +43,7 @@
 - (NSString *)displayDate {
     if (!_displayDate) {
         NSDateFormatter * dateFormatPrinter = [[NSDateFormatter alloc] init];
-        [dateFormatPrinter setDateFormat:@"MMMM dd, yyyy HH:mm aa"];
+        [dateFormatPrinter setDateFormat:@"MMMM dd, yyyy hh:mm aa"];
         [dateFormatPrinter setTimeZone:[NSTimeZone systemTimeZone]];
         _displayDate = [[NSString alloc] initWithFormat:@"%@",[dateFormatPrinter stringFromDate:_date]];
     }
@@ -49,7 +51,14 @@
 }
 
 - (CGFloat)textHeight {
-    return [_displayText sizeWithFont:[UIFont systemFontOfSize:kTextViewFontSize] constrainedToSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 50.0, 10000.0) lineBreakMode:UILineBreakModeWordWrap].height;
+    if (_textHeight == -1) {
+        _textHeight = [_displayText sizeWithFont:[UIFont systemFontOfSize:kTextViewFontSize] constrainedToSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 50.0, 10000.0) lineBreakMode:UILineBreakModeWordWrap].height; //50 is the height of the FloorUpdateTableViewCell in its nib less the amount of the model UITextView, plus some padding
+    }
+    return _textHeight;
+}
+
+- (CGFloat)textViewHeightRequired {
+    return [self textHeight] + 15;
 }
 
 - (void)dealloc

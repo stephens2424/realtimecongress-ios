@@ -44,11 +44,13 @@
     for (id update in [userInfo objectForKey:@"floor_updates"]) {
         NSDate * date = [dateFormatter dateFromString:[update objectForKey:@"timestamp"]];
         for (id str in [update objectForKey:@"events"]) {
-            [floorUpdateText appendFormat:@"%@\n\n",str];
+            str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            [floorUpdateText appendFormat:@"%@",str];
         }
         [floorUpdates addObject:[[[FloorUpdate alloc] initWithDisplayText:floorUpdateText atDate:date] autorelease]];
         [floorUpdateText setString:@""];
     }
+    [self.tableView reloadData];
     [self.tableView reloadData];
 }
 
@@ -116,7 +118,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[floorUpdates objectAtIndex:indexPath.row] textHeight] + 20;
+    return [[floorUpdates objectAtIndex:indexPath.row] textHeight] + 55; //55 = the height of the table cell wihtout the event text (76 - 21)
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -128,9 +130,8 @@
     }
     
     [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] displayDate]];
+    [(UITextView *)[cell viewWithTag:2] setFrame:CGRectMake([cell viewWithTag:2].frame.origin.x, [cell viewWithTag:2].frame.origin.y, [cell viewWithTag:2].frame.size.width,[[floorUpdates objectAtIndex:indexPath.row] textViewHeightRequired])];
     [(UITextView *)[cell viewWithTag:2] setText:[[floorUpdates objectAtIndex:indexPath.row] displayText]];
-    [(UITextView *)[cell viewWithTag:2] setFrame:CGRectMake([cell viewWithTag:2].frame.origin.x, [cell viewWithTag:2].frame.origin.y, [cell viewWithTag:2].frame.size.width,[[floorUpdates objectAtIndex:indexPath.row] textHeight])];
-    
     return cell;
 }
 

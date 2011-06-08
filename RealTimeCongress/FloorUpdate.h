@@ -23,6 +23,7 @@
 @property (readonly) NSString * displayDate;
 @property (readonly) NSString * displayTextWithDate;
 @property (readonly) CGFloat textHeight;
+@property (readonly) CGFloat textViewHeightRequired;
 
 - (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date;
 
