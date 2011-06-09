@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "JSONKit.h"
 
-#define HOUSE_URL @"http://api.realtimecongress.org/api/v1/committee_hearings.json?apikey=dc060e7c2e154278a4167b2c4c571695&chamber=house"
-#define SENATE_URL @"http://api.realtimecongress.org/api/v1/committee_hearings.json?apikey=dc060e7c2e154278a4167b2c4c571695&chamber=senate"
+#define HOUSE_URL @"http://api.realtimecongress.org/api/v1/committee_hearings.json?apikey=dc060e7c2e154278a4167b2c4c571695&chamber=house&per_page=100&legislative_day__gte=2011-06-01"
+#define SENATE_URL @"http://api.realtimecongress.org/api/v1/committee_hearings.json?apikey=dc060e7c2e154278a4167b2c4c571695&chamber=senate&per_page=100&legislative_day__gte=2011-06-01"
 
 @interface CommitteeHearingsViewController : UITableViewController {
     NSArray *parsedHearingData;

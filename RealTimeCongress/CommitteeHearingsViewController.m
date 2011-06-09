@@ -9,6 +9,23 @@
 #import "CommitteeHearingsViewController.h"
 #import "JSONKit.h"
 
+#pragma mark Utility extensions
+
+@interface UILabel (sizingExtensions)
+- (void)sizeToFitFixedWidth:(NSInteger)fixedWidth;
+@end
+
+@implementation UILabel (sizingExtensions)
+
+
+- (void)sizeToFitFixedWidth:(NSInteger)fixedWidth
+{
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, fixedWidth, 0);
+    self.lineBreakMode = UILineBreakModeWordWrap;
+    self.numberOfLines = 0;
+    [self sizeToFit];
+}
+@end
 
 @implementation CommitteeHearingsViewController
 
@@ -107,7 +124,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 20;
+    if (parsedHearingData != NULL) {
+        return [parsedHearingData count];
+    }
+    else{
+        return 20;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,12 +140,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
     // Configure the cell...
     cell.textLabel.text                      = [[[parsedHearingData objectAtIndex:indexPath.row] 
                                                 objectForKey:@"committee"] objectForKey:@"name"];
+    cell.detailTextLabel.text                = [[parsedHearingData objectAtIndex:indexPath.row] 
+                                                objectForKey:@"legislative_day"];
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
     return cell;
@@ -169,7 +193,12 @@
     jsonKitDecoder = [JSONDecoder decoder];
     items = [jsonKitDecoder objectWithData:jsonData];
     NSArray *data = [items objectForKey:@"committee_hearings"];
-    parsedHearingData = [[NSArray alloc] initWithArray:data];
+    //parsedHearingData = [[NSArray alloc] initWithArray:data];
+    //Sort data by legislative day
+    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"legislative_day" ascending:YES];
+    NSArray *descriptors = [[NSArray alloc] initWithObjects: sortByDate, nil];
+    parsedHearingData = [[NSArray alloc] initWithArray:[data sortedArrayUsingDescriptors:descriptors]];
+    
 }
 
 @end
