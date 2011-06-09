@@ -38,6 +38,7 @@
 @synthesize allHearings;
 @synthesize loadingIndicator;
 @synthesize opQueue;
+@synthesize committeeHearingsCell;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -151,15 +152,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [[NSBundle mainBundle] loadNibNamed:@"CommitteeHearingsCell" owner:self options:nil];
+        cell = committeeHearingsCell;
+        self.committeeHearingsCell = nil;
     }
-    
-    // Configure the cell...
-    cell.textLabel.text                      = [[[parsedHearingData objectAtIndex:indexPath.row] 
-                                                objectForKey:@"committee"] objectForKey:@"name"];
-    cell.detailTextLabel.text                = [[parsedHearingData objectAtIndex:indexPath.row] 
-                                                objectForKey:@"legislative_day"];
-    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    //Calculate the correct size for each UILabel
+    UILabel *label;
+    label = (UILabel *)[cell viewWithTag:1];
+    label.text = [[[parsedHearingData objectAtIndex:indexPath.row] 
+                   objectForKey:@"committee"] objectForKey:@"name"];
+    [label sizeToFitFixedWidth:320];
     
     return cell;
 
@@ -173,7 +175,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return 100;
 }
 
 #pragma mark - UI Actions

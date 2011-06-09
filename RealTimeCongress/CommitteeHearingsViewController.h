@@ -22,6 +22,7 @@
     NSMutableArray *allHearings;
     UIActivityIndicatorView *loadingIndicator;
     NSOperationQueue *opQueue;
+    UITableViewCell *committeeHearingsCell;
 }
 
 @property(nonatomic,retain) NSArray *parsedHearingData;
@@ -33,6 +34,7 @@
 @property(nonatomic,retain) NSMutableArray *allHearings;
 @property(nonatomic,retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property(nonatomic,retain) NSOperationQueue *opQueue;
+@property (nonatomic, assign) IBOutlet UITableViewCell *committeeHearingsCell;
 
 - (void) refresh;
 - (void) parseData;
