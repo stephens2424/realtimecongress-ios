@@ -19,6 +19,7 @@
 @synthesize chamberControl;
 @synthesize hearingEnumerator;
 @synthesize allHearings;
+@synthesize loadingIndicator;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +33,8 @@
 - (void)dealloc
 {
     [super dealloc];
+    [loadingIndicator release];
+    [chamberControl release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,14 +59,8 @@
     
     // JSONKit requests
     //Request data based on segemented control at launch
-    if (chamberControl.selectedSegmentIndex == 0) {
-        jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:HOUSE_URL]];
-    }
-    else {
-        jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:SENATE_URL]];
-    }
+    [self refresh];
     
-    [self parseData];  
 }
 
 - (void)viewDidUnload
@@ -144,17 +141,27 @@
     return 45;
 }
 
-#pragma mark - custom button actions
+#pragma mark - UI Actions
 - (void) refresh
 {
+    // JSONKit requests
+    //Request data based on segemented control selection
+    //Hide the table view and animate the activity indicator when loading data
+    self.view.hidden = YES;
+    [loadingIndicator startAnimating];
     if (chamberControl.selectedSegmentIndex == 0) {
         jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:HOUSE_URL]];
     }
     else {
         jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:SENATE_URL]];
     }
-    [self parseData];
+    if (jsonData != NULL) {
+        [self parseData];
+    }
     [self.tableView reloadData];
+    //Hide the activity indicator and reveal the table view once loading is complete
+    [loadingIndicator stopAnimating];
+    self.view.hidden = NO;
 }
 
 - (void) parseData

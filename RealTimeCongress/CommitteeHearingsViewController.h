@@ -20,6 +20,7 @@
     IBOutlet UISegmentedControl *chamberControl;
     NSEnumerator *hearingEnumerator;
     NSMutableArray *allHearings;
+    UIActivityIndicatorView *loadingIndicator;
 }
 
 @property(nonatomic,retain) NSArray *parsedHearingData;
@@ -29,6 +30,7 @@
 @property(nonatomic,retain) IBOutlet UISegmentedControl *chamberControl;
 @property(nonatomic,retain) NSEnumerator *hearingEnumerator;
 @property(nonatomic,retain) NSMutableArray *allHearings;
+@property(nonatomic,retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 - (void) refresh;
 - (void) parseData;
