@@ -45,6 +45,12 @@ Time to really harness the features of iOS and think outside the box:
 
 ## Build Instructions
 
+### Cloning
+
+When you clone this repository, you also need to clone the submodule with the following:
+
+    git submodule update
+
 ### API Key
 
 You need to find the file APIKeys.example.plist. It is within the Xcode project file (secondary click it, and choose Show Package Contents). *Duplicate* the plist file and remove the .example portion of the filename. Open the file and replace YOUR API KEY HERE with your API Key. You can register for an API Key here: [http://services.sunlightlabs.com/accounts/register/](http://services.sunlightlabs.com/accounts/register/).
