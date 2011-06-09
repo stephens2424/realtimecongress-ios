@@ -54,6 +54,7 @@
     [loadingIndicator release];
     [chamberControl release];
     [opQueue release];
+    [parsedHearingData release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +63,7 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+    [parsedHearingData release];
 }
 
 #pragma mark - View lifecycle
@@ -69,7 +71,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Hearings";
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self  action:@selector(refresh)];
     self.navigationItem.rightBarButtonItem = refreshButton;
     
@@ -86,11 +87,6 @@
     loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [loadingIndicator setCenter:self.view.center];
     [self.view addSubview:loadingIndicator];
-    
-    // JSONKit requests
-    //Request data based on segemented control at launch
-    [self refresh];
-    
 }
 
 - (void)viewDidUnload
@@ -103,6 +99,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    //Refresh data
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -181,6 +179,9 @@
 #pragma mark - UI Actions
 - (void) refresh
 {
+    //Set the navigation bar title to that of the selected chamber
+    self.title = [NSString stringWithFormat:@"%@ Hearings", [chamberControl titleForSegmentAtIndex:chamberControl.selectedSegmentIndex]];
+    
     //Animate the activity indicator when loading data
     [self.loadingIndicator startAnimating];
     
