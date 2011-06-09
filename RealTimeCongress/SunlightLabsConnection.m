@@ -22,6 +22,7 @@
 }
 
 - (void)sendRequest {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection connectionWithRequest:[_request request] delegate:self];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -33,6 +34,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSDictionary * decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
     [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:decodedData];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)dealloc
