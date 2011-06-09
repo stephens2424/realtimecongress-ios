@@ -109,6 +109,7 @@
 		2A787F9B138324D1008EC17E /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A787F4A138324D1008EC17E /* appIcon.png */; };
 		2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA219A1385701000680E9B /* WhipNoticeViewController.m */; };
 		2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */; };
+		DC1C3F6E13A13E62009829AC /* CongressionalArtifact.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */; };
 		DC20A228139AB4F500CDF09C /* SunlightLabsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */; };
 		DC20A229139AB4F500CDF09C /* SunlightLabsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A225139AB4F500CDF09C /* SunlightLabsRequest.m */; };
 		DC20A231139ADAAA00CDF09C /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A230139ADAAA00CDF09C /* Bill.m */; };
@@ -117,6 +118,7 @@
 		DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */; };
 		DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC7B29C0139AB27500BC803C /* APIKeys.plist */; };
 		DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */; };
+		DCD63D7C13A062BB00BBDB61 /* Legislator.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD63D7B13A062BB00BBDB61 /* Legislator.m */; };
 		DCF4750D139AAFA500803EF5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF474F4139AAFA500803EF5 /* JSONKit.m */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +242,8 @@
 		2AAA21991385701000680E9B /* WhipNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhipNoticeViewController.h; sourceTree = "<group>"; };
 		2AAA219A1385701000680E9B /* WhipNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhipNoticeViewController.m; sourceTree = "<group>"; };
 		2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhipNoticeViewController.xib; sourceTree = "<group>"; };
+		DC1C3F6C13A13E62009829AC /* CongressionalArtifact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongressionalArtifact.h; sourceTree = "<group>"; };
+		DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongressionalArtifact.m; sourceTree = "<group>"; };
 		DC20A222139AB4F500CDF09C /* SunlightLabsConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunlightLabsConnection.h; sourceTree = "<group>"; };
 		DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunlightLabsConnection.m; sourceTree = "<group>"; };
 		DC20A224139AB4F500CDF09C /* SunlightLabsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunlightLabsRequest.h; sourceTree = "<group>"; };
@@ -253,6 +257,8 @@
 		DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateViewController.xib; sourceTree = "<group>"; };
 		DC7B29C0139AB27500BC803C /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APIKeys.plist; path = RealTimeCongress.xcodeproj/APIKeys.plist; sourceTree = SOURCE_ROOT; };
 		DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateTableViewCell.xib; sourceTree = "<group>"; };
+		DCD63D7A13A062BB00BBDB61 /* Legislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Legislator.h; sourceTree = "<group>"; };
+		DCD63D7B13A062BB00BBDB61 /* Legislator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Legislator.m; sourceTree = "<group>"; };
 		DCF474F2139AAFA500803EF5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		DCF474F3139AAFA500803EF5 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		DCF474F4139AAFA500803EF5 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
@@ -469,6 +475,10 @@
 				DC20A230139ADAAA00CDF09C /* Bill.m */,
 				DC20A233139B5C2700CDF09C /* FloorUpdate.h */,
 				DC20A234139B5C2700CDF09C /* FloorUpdate.m */,
+				DCD63D7A13A062BB00BBDB61 /* Legislator.h */,
+				DCD63D7B13A062BB00BBDB61 /* Legislator.m */,
+				DC1C3F6C13A13E62009829AC /* CongressionalArtifact.h */,
+				DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */,
 			);
 			name = "Congress Model";
 			sourceTree = "<group>";
@@ -702,6 +712,8 @@
 				DC20A231139ADAAA00CDF09C /* Bill.m in Sources */,
 				DC20A235139B5C2700CDF09C /* FloorUpdate.m in Sources */,
 				DC20A239139B5E0000CDF09C /* FloorUpdateViewController.m in Sources */,
+				DCD63D7C13A062BB00BBDB61 /* Legislator.m in Sources */,
+				DC1C3F6E13A13E62009829AC /* CongressionalArtifact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
