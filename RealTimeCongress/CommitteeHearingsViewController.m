@@ -37,6 +37,7 @@
 @synthesize hearingEnumerator;
 @synthesize allHearings;
 @synthesize loadingIndicator;
+@synthesize opQueue;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -52,6 +53,7 @@
     [super dealloc];
     [loadingIndicator release];
     [chamberControl release];
+    [opQueue release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,8 +73,19 @@
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self  action:@selector(refresh)];
     self.navigationItem.rightBarButtonItem = refreshButton;
     
+    //Make cells unselectable
+    self.tableView.allowsSelection = NO;
+    
+    //Initialize the operation queue
+    opQueue = [[NSOperationQueue alloc] init];
+    
     // Refreshes table view data on segmented control press;
     [chamberControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    
+    //An activity indicator to indicate loading
+    loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loadingIndicator setCenter:self.view.center];
+    [self.view addSubview:loadingIndicator];
     
     // JSONKit requests
     //Request data based on segemented control at launch
@@ -168,11 +181,33 @@
 #pragma mark - UI Actions
 - (void) refresh
 {
-    // JSONKit requests
+    //Animate the activity indicator when loading data
+    [self.loadingIndicator startAnimating];
+    
+    //Asynchronously retrieve data
+    NSInvocationOperation* dataRetrievalOp = [[[NSInvocationOperation alloc] initWithTarget:self
+                                                                                   selector:@selector(retrieveData) object:nil] autorelease];
+    [dataRetrievalOp addObserver:self forKeyPath:@"isFinished" options:0 context:NULL];
+    [opQueue addOperation:dataRetrievalOp];
+}
+
+- (void) parseData
+{
+    jsonKitDecoder = [JSONDecoder decoder];
+    items = [jsonKitDecoder objectWithData:jsonData];
+    NSArray *data = [items objectForKey:@"committee_hearings"];
+
+    //Sort data by legislative day
+    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"legislative_day" ascending:YES];
+    NSArray *descriptors = [[NSArray alloc] initWithObjects: sortByDate, nil];
+    parsedHearingData = [[NSArray alloc] initWithArray:[data sortedArrayUsingDescriptors:descriptors]];
+    
+}
+
+- (void) retrieveData
+{
+    //JSONKit requests
     //Request data based on segemented control selection
-    //Hide the table view and animate the activity indicator when loading data
-    self.view.hidden = YES;
-    [loadingIndicator startAnimating];
     if (chamberControl.selectedSegmentIndex == 0) {
         jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:HOUSE_URL]];
     }
@@ -182,23 +217,21 @@
     if (jsonData != NULL) {
         [self parseData];
     }
-    [self.tableView reloadData];
-    //Hide the activity indicator and reveal the table view once loading is complete
-    [loadingIndicator stopAnimating];
-    self.view.hidden = NO;
 }
 
-- (void) parseData
+#pragma mark Key-Value Observing methods
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
 {
-    jsonKitDecoder = [JSONDecoder decoder];
-    items = [jsonKitDecoder objectWithData:jsonData];
-    NSArray *data = [items objectForKey:@"committee_hearings"];
-    //parsedHearingData = [[NSArray alloc] initWithArray:data];
-    //Sort data by legislative day
-    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"legislative_day" ascending:YES];
-    NSArray *descriptors = [[NSArray alloc] initWithObjects: sortByDate, nil];
-    parsedHearingData = [[NSArray alloc] initWithArray:[data sortedArrayUsingDescriptors:descriptors]];
-    
+    if ([keyPath isEqual:@"isFinished"]) {
+        //Reload the table once data retrieval is complete
+        [self.tableView reloadData];
+            
+        //Hide the activity indicator once loading is complete
+        [loadingIndicator stopAnimating];
+    }
 }
 
 @end

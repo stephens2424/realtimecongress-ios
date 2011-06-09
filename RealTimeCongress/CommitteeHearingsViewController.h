@@ -21,6 +21,7 @@
     NSEnumerator *hearingEnumerator;
     NSMutableArray *allHearings;
     UIActivityIndicatorView *loadingIndicator;
+    NSOperationQueue *opQueue;
 }
 
 @property(nonatomic,retain) NSArray *parsedHearingData;
@@ -31,8 +32,13 @@
 @property(nonatomic,retain) NSEnumerator *hearingEnumerator;
 @property(nonatomic,retain) NSMutableArray *allHearings;
 @property(nonatomic,retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property(nonatomic,retain) NSOperationQueue *opQueue;
 
 - (void) refresh;
 - (void) parseData;
-
+- (void) retrieveData;
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context;
 @end
