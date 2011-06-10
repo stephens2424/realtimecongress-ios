@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SunlightLabsRequest;
+@class SunlightLabsConnection;
 
 static NSString * ReceivedCongressionalInformationNotification = @"ReceivedCongressionalInformationNotification";
 
@@ -20,7 +22,14 @@ typedef enum {
 } InformationAvailability;
 
 @interface CongressionalArtifact : NSObject {
-    
+    @protected
+    SunlightLabsConnection * _connection;
+    BOOL _abbreviated;
 }
+
+@property (readonly) BOOL abbreviated;
+
+- (void)requestInformationWithRequest:(SunlightLabsRequest *)request;
+- (void)receiveInformation:(NSNotification *)notification;
 
 @end

@@ -32,65 +32,69 @@ typedef enum {
 } SenateClass;
 
 @interface Legislator : CongressionalArtifact {
+    @private
     NSString * _title;
     NSString * _firstname;
     NSString * _middlename;
     NSString * _lastname;
     NSString * _nameSuffix;
     NSString * _nickname;
-    Gender _gender;
-    PoliticalParty _party;
+    NSNumber * _gender;
+    NSNumber * _party;
     NSString * _state;
     NSString * _district;
-    BOOL _inOffice;
+    NSNumber * _inOffice;
     NSString * _phoneNumber;
     NSString * _faxNumber;
     NSURL * _website;
     NSURL * _webContact;
     NSString * _email;
     NSString * _congressAddress;
-    NSUInteger _bioguideId;
-    NSUInteger _votesmartId;
-    NSUInteger _fecId;
-    NSUInteger _govTrackId;
-    NSUInteger _crpId;
+    NSString * _bioguideId;
+    NSString * _votesmartId;
+    NSString * _fecId;
+    NSString * _govTrackId;
+    NSString * _crpId;
     NSURL * _congresspediaURL;
     NSString * _twitterId;
     NSURL * _youtubeURL;
     NSString * _facebookId;
-    SenateClass _senateClass;
+    NSNumber * _senateClass;
     NSDate * _birthdate;
-    NSDictionary * _informationAvailibilityDictionary;
-    SunlightLabsConnection * _connection;
+    NSMutableDictionary * _informationAvailibilityDictionary;
+    
+    BOOL _informationRequested;
 }
 
-@property (retain) NSString * title;
-@property (retain) NSString * firstname;
-@property (retain) NSString * middlename;
-@property (retain) NSString * lastname;
-@property (retain) NSString * nameSuffix;
-@property (retain) NSString * nickname;
-@property Gender gender;
-@property PoliticalParty party;
-@property (retain) NSString * state;
-@property (retain) NSString * district;
-@property BOOL inOffice;
-@property (retain) NSString * phoneNumber;
-@property (retain) NSString * faxNumber;
-@property (retain) NSURL * website;
-@property (retain) NSURL * webContact;
-@property (retain) NSString * email;
-@property (retain) NSString * congressAddress;
-@property NSUInteger bioguideId;
-@property NSUInteger votesmartId;
-@property NSUInteger fecId;
-@property NSUInteger govTrackId;
-@property NSUInteger crpId;
-@property (retain) NSURL * congresspediaURL;
-@property (retain) NSString * twitterId;
-@property (retain) NSURL * youtubeURL;
-@property (retain) NSString * facebookId;
-@property SenateClass senateClass;
-@property (retain) NSDate * birthdate;
+@property (readonly) NSString * title;
+@property (readonly) NSString * firstname;
+@property (readonly) NSString * middlename;
+@property (readonly) NSString * lastname;
+@property (readonly) NSString * nameSuffix;
+@property (readonly) NSString * nickname;
+@property (readonly) NSNumber * gender;
+@property (readonly) NSNumber * party;
+@property (readonly) NSString * state;
+@property (readonly) NSString * district;
+@property (readonly) NSNumber * inOffice;
+@property (readonly) NSString * phoneNumber;
+@property (readonly) NSString * faxNumber;
+@property (readonly) NSURL * website;
+@property (readonly) NSURL * webContact;
+@property (readonly) NSString * email;
+@property (readonly) NSString * congressAddress;
+@property (readonly) NSString * bioguideId;
+@property (readonly) NSString * votesmartId;
+@property (readonly) NSString * fecId;
+@property (readonly) NSString * govTrackId;
+@property (readonly) NSString * crpId;
+@property (readonly) NSURL * congresspediaURL;
+@property (readonly) NSString * twitterId;
+@property (readonly) NSURL * youtubeURL;
+@property (readonly) NSString * facebookId;
+@property (readonly) NSNumber * senateClass;
+@property (readonly) NSDate * birthdate;
+
+- (void)requestInformation;
 
 @end

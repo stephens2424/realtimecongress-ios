@@ -55,170 +55,96 @@
     }
     SunlightLabsRequest * request;
     if ([_informationAvailibilityDictionary objectForKey:@"bioguideId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber numberWithUnsignedInteger:_bioguideId] stringValue],@"bioguide_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_bioguideId,@"bioguide_id", nil]];
     } else if ([_informationAvailibilityDictionary objectForKey:@"votesmartId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber numberWithUnsignedInteger:_votesmartId] stringValue],@"votesmart_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_votesmartId,@"votesmart_id", nil]];
     } else if ([_informationAvailibilityDictionary objectForKey:@"fecId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber numberWithUnsignedInteger:_fecId] stringValue],@"fec_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_fecId,@"fec_id", nil]];
     } else if ([_informationAvailibilityDictionary objectForKey:@"govTrackId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber numberWithUnsignedInteger:_govTrackId] stringValue],@"govtrack_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_govTrackId,@"govtrack_id", nil]];
     } else if ([_informationAvailibilityDictionary objectForKey:@"crpId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[[NSNumber numberWithUnsignedInteger:_crpId] stringValue],@"crp_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_crpId,@"crp_id", nil]];
     } else if ([_informationAvailibilityDictionary objectForKey:@"lastname"] == InformationAvailable) {
         request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_lastname,@"lastname", nil]];
     } else {
         [self receiveInformation:[NSNotification notificationWithName:nil object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSError errorWithDomain:@"CongressModel" code:1000 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Not enough information to identify artifact of Congress",@"NSLocalizedDescriptionKey", nil]],@"error", nil]]];
         return;
     }
-    _connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:request];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveInformation:) name:SunglightLabsRequestFinishedNotification object:_connection];
-    [_connection sendRequest];
+    [super requestInformationWithRequest:request];
 }
 
 - (void)receiveInformation:(NSNotification *)notification {
     if ([[notification userInfo] objectForKey:@"error"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:ReceivedCongressionalInformationNotification object:self userInfo:[notification userInfo]];
+        _abbreviated = YES;
+    } else {
+        NSDictionary * data = [notification userInfo];
+        _title = [[data objectForKey:@"title"] retain];
+        _firstname = [[data objectForKey:@"firstname"] retain];
+        _middlename = [[data objectForKey:@"middlename"] retain];
+        _lastname = [[data objectForKey:@"lastname"] retain];
+        _nameSuffix = [[data objectForKey:@"name_suffix"] retain];
+        _nickname = [[data objectForKey:@"nickname"] retain];
+        if ([[data objectForKey:@"gender"] isEqualToString:@"M"]) {
+            _gender = [[NSNumber alloc] initWithInt:Male];
+        } else if ([[data objectForKey:@"gender"] isEqualToString:@"F"]) {
+            _gender = [[NSNumber alloc] initWithInt:Female];
+        } else {
+            _gender = nil;
+        }
+        if ([[data objectForKey:@"party"] isEqualToString:@"D"]) {
+            _party = [[NSNumber alloc] initWithInt:Democrat];
+        } else if ([[data objectForKey:@"party"] isEqualToString:@"R"]) {
+            _party = [[NSNumber alloc] initWithInt:Republican];
+        } else if ([[data objectForKey:@"party"] isEqualToString:@"I"]) {
+            _party = [[NSNumber alloc] initWithInt:Independent];
+        } else {
+            _party = nil;
+        }
+        _state = [[data objectForKey:@"state"] retain];
+        _district = [[data objectForKey:@"district"] retain];
+        if ([[data objectForKey:@"in_office"] isEqualToString:@"1"]) {
+            _inOffice = [[NSNumber alloc] initWithBool:YES];
+        } else {
+            _inOffice = [[NSNumber alloc] initWithBool:NO];
+        }
+        _phoneNumber = [[data objectForKey:@"phone_number"] retain];
+        _faxNumber = [[data objectForKey:@"fax_number"] retain];
+        if ([data objectForKey:@"website"])
+            _website = [[NSURL alloc] initWithString:[data objectForKey:@"website"]];
+        if ([data objectForKey:@"web_contact"])
+            _webContact = [[NSURL alloc] initWithString:[data objectForKey:@"web_contact"]];
+        _email = [[data objectForKey:@"email"] retain];
+        _congressAddress = [[data objectForKey:@"congress_address"] retain];
+        _bioguideId = [[data objectForKey:@"bioguide_id"] retain];
+        _votesmartId = [[data objectForKey:@"votesmart_id"] retain];
+        _fecId = [[data objectForKey:@"fec_id"] retain];
+        _govTrackId = [[data objectForKey:@"govtrack_id"] retain];
+        _crpId = [[data objectForKey:@"crp_id"] retain];
+        if ([data objectForKey:@"congresspedia_url"])
+            _congresspediaURL = [[NSURL alloc] initWithString:[data objectForKey:@"congresspedia_url"]];
+        _twitterId = [[data objectForKey:@"twitter_id"] retain];
+        if ([data objectForKey:@"youtube_url"])
+            _youtubeURL = [[NSURL alloc] initWithString:[data objectForKey:@"youtube_url"]];
+        _facebookId = [[data objectForKey:@"facebook_id"] retain];
+        if ([[data objectForKey:@"senateClass"] isEqualToString:@"I"])
+            _senateClass = [[NSNumber alloc] initWithInt:ClassI];
+        else if ([[data objectForKey:@"senateClass"] isEqualToString:@"II"])
+            _senateClass = [[NSNumber alloc] initWithInt:ClassII];
+        else if ([[data objectForKey:@"senateClass"] isEqualToString:@"III"])
+            _senateClass = [[NSNumber alloc] initWithInt:ClassIII];
+        else
+            _senateClass = nil;
+        if ([data objectForKey:@"birthdate"]) {
+            NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            _birthdate = [[formatter dateFromString:[data objectForKey:@"birthdate"]] retain];
+            [formatter release];
+        }
+        [super receiveInformation:notification];
+        _abbreviated = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:ReceivedCongressionalInformationNotification object:self];
     }
-}
-
-- (NSString *)title:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"title"] unsignedIntegerValue];
-    return _title;
-}
-
-- (NSString *)firstname:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"firstname"] unsignedIntegerValue];
-    return _firstname;
-}
-
-- (NSString *)middlename:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"middlename"] unsignedIntegerValue];
-    return _middlename;
-}
-
-- (NSString *)lastname:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"lastname"] unsignedIntegerValue];
-    return _lastname;
-}
-
-- (NSString *)nameSuffix:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"nameSuffix"] unsignedIntegerValue];
-    return _nameSuffix;
-}
-
-- (NSString *)nickname:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"nickname"] unsignedIntegerValue];
-    return _nickname;
-}
-
-- (Gender)gender:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"gender"] unsignedIntegerValue];
-    return _gender;
-}
-
-- (PoliticalParty)party:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"party"] unsignedIntegerValue];
-    return _party;
-}
-
-- (NSString *)state:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"state"] unsignedIntegerValue];
-    return _state;
-}
-
-- (NSString *)district:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"district"] unsignedIntegerValue];
-    return _district;
-}
-
-- (BOOL)inOffice:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"inOffice"] unsignedIntegerValue];
-    return _inOffice;
-}
-
-- (NSString *)phoneNumber:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"phoneNumber"] unsignedIntegerValue];
-    return _phoneNumber;
-}
-
-- (NSString *)faxNumber:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"faxNumber"] unsignedIntegerValue];
-    return _faxNumber;
-}
-
-- (NSURL *)website:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"website"] unsignedIntegerValue];
-    return _website;
-}
-
-- (NSURL *)webContact:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"webContact"] unsignedIntegerValue];
-    return _webContact;
-}
-
-- (NSString *)email:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"email"] unsignedIntegerValue];
-    return _congressAddress;
-}
-
-- (NSString *)congressAddress:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"congressAddress"] unsignedIntegerValue];
-    return _congressAddress;
-}
-
-- (NSUInteger)bioguideId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"bioguideId"] unsignedIntegerValue];
-    return _bioguideId;
-}
-
-- (NSUInteger)votesmartId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"votesmartId"] unsignedIntegerValue];
-    return _votesmartId;
-}
-
-- (NSUInteger)fecId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"fecId"] unsignedIntegerValue];
-    return _fecId;
-}
-
-- (NSUInteger)govTrackId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"govTrackId"] unsignedIntegerValue];
-    return _govTrackId;
-}
-
-- (NSUInteger)crpId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"crpId"] unsignedIntegerValue];
-    return _crpId;
-}
-
-- (NSURL *)congresspediaURL:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"congresspediaURL"] unsignedIntegerValue];
-    return _congresspediaURL;
-}
-
-- (NSString *)twitterId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"twitterId"] unsignedIntegerValue];
-    return _twitterId;
-}
-
-- (NSURL *)youtubeURL:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"youtubeURL"] unsignedIntegerValue];
-    return _youtubeURL;
-}
-
-- (NSString *)facebookId:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"facebookId"] unsignedIntegerValue];
-    return _facebookId;
-}
-
-- (SenateClass)senateClass:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"senateClass"] unsignedIntegerValue];
-    return _senateClass;
-}
-
-- (NSDate *)birthdate:(InformationAvailability *)availability {
-    * availability = [[_informationAvailibilityDictionary objectForKey:@"birthdate"] unsignedIntegerValue];
-    return _birthdate;
 }
 
 @end

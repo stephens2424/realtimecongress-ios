@@ -7,8 +7,21 @@
 //
 
 #import "CongressionalArtifact.h"
-
+#import "SunlightLabsConnection.h"
 
 @implementation CongressionalArtifact
+
+@synthesize abbreviated;
+
+- (void)requestInformationWithRequest:(SunlightLabsRequest *)request {
+    _connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:request];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveInformation:) name:SunglightLabsRequestFinishedNotification object:_connection];
+    [_connection sendRequest];
+}
+
+- (void)receiveInformation:(NSNotification *)notification {
+    [_connection release];
+    _connection = nil;
+}
 
 @end
