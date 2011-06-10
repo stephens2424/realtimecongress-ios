@@ -76,6 +76,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
+    rotatedButtons = [[NSMutableArray alloc] initWithCapacity:3];
     connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:nil] autorelease]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFloorUpdate:) name:SunglightLabsRequestFinishedNotification object:connection];
     [connection sendRequest];
@@ -94,6 +95,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [floorUpdates release];
+    [rotatedButtons release];
     [super viewDidDisappear:animated];
 }
 
@@ -126,7 +129,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"FloorUpdateTableViewCell" owner:tableView options:nil] objectAtIndex:0];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"FloorUpdateTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
     
     [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] displayDate]];
@@ -187,5 +190,33 @@
      [detailViewController release];
      */
 }
+
+#pragma mark - Detail expansion
+
+- (IBAction)toggleDetail:(UIButton *)sender {
+    if (![rotatedButtons containsObject:sender]) {
+        CABasicAnimation *halfTurn;
+        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        halfTurn.fromValue = [NSNumber numberWithFloat:0];
+        halfTurn.toValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
+        halfTurn.duration = 0.25;
+        halfTurn.repeatCount = 1;
+        [sender.layer addAnimation:halfTurn forKey:@"180"];
+        sender.transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
+        [rotatedButtons addObject:sender];
+    } else {
+        CABasicAnimation *halfTurn;
+        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        halfTurn.fromValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
+        halfTurn.toValue = [NSNumber numberWithFloat:0];
+        halfTurn.duration = 0.25;
+        halfTurn.repeatCount = 1;
+        [sender.layer addAnimation:halfTurn forKey:@"180"];
+        sender.transform = CGAffineTransformMakeRotation( 0 );
+        [rotatedButtons removeObject:sender];
+    }
+}
+
+
 
 @end

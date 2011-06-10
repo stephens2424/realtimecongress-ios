@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "SunlightLabsConnection.h"
 
 @interface FloorUpdateViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate> {
     @private
     SunlightLabsConnection * connection;
     NSMutableArray * floorUpdates;
+    NSMutableArray * rotatedButtons;
 }
+
+- (IBAction)toggleDetail:(UIButton *)sender;
 
 @end

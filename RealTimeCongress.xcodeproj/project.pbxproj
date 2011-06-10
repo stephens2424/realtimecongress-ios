@@ -110,6 +110,8 @@
 		2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA219A1385701000680E9B /* WhipNoticeViewController.m */; };
 		2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */; };
 		DC1C3F6E13A13E62009829AC /* CongressionalArtifact.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */; };
+		DC1C3F7113A1FDFD009829AC /* downArrowAntiAliased.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */; };
+		DC1C3F7313A20298009829AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1C3F7213A20298009829AC /* QuartzCore.framework */; };
 		DC20A228139AB4F500CDF09C /* SunlightLabsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */; };
 		DC20A229139AB4F500CDF09C /* SunlightLabsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A225139AB4F500CDF09C /* SunlightLabsRequest.m */; };
 		DC20A231139ADAAA00CDF09C /* Bill.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A230139ADAAA00CDF09C /* Bill.m */; };
@@ -244,6 +246,8 @@
 		2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhipNoticeViewController.xib; sourceTree = "<group>"; };
 		DC1C3F6C13A13E62009829AC /* CongressionalArtifact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongressionalArtifact.h; sourceTree = "<group>"; };
 		DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongressionalArtifact.m; sourceTree = "<group>"; };
+		DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downArrowAntiAliased.png; path = Resources/downArrowAntiAliased.png; sourceTree = SOURCE_ROOT; };
+		DC1C3F7213A20298009829AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC20A222139AB4F500CDF09C /* SunlightLabsConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunlightLabsConnection.h; sourceTree = "<group>"; };
 		DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunlightLabsConnection.m; sourceTree = "<group>"; };
 		DC20A224139AB4F500CDF09C /* SunlightLabsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunlightLabsRequest.h; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C3F7313A20298009829AC /* QuartzCore.framework in Frameworks */,
 				2A787EBB138310E8008EC17E /* UIKit.framework in Frameworks */,
 				2A787EBD138310E8008EC17E /* Foundation.framework in Frameworks */,
 				2A787EBF138310E8008EC17E /* CoreGraphics.framework in Frameworks */,
@@ -292,6 +297,7 @@
 		2A787EAB138310E7008EC17E = {
 			isa = PBXGroup;
 			children = (
+				DC1C3F7213A20298009829AC /* QuartzCore.framework */,
 				DCF474CC139AAFA400803EF5 /* JSONKit */,
 				2A787EF6138311BF008EC17E /* README.md */,
 				2A787EC0138310E8008EC17E /* RealTimeCongress */,
@@ -383,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				284C0610138C21C600ED309D /* AboutInfo.html */,
+				DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */,
 				2A787EFA138324D1008EC17E /* 08-chat.png */,
 				2A787EFB138324D1008EC17E /* 08-chat@2x.png */,
 				2A787EFC138324D1008EC17E /* 09-chat-2.png */,
@@ -666,6 +673,7 @@
 				DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */,
 				DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */,
 				DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */,
+				DC1C3F7113A1FDFD009829AC /* downArrowAntiAliased.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
