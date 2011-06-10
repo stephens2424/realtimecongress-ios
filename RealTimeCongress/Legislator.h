@@ -94,7 +94,10 @@ typedef enum {
 @property (readonly) NSString * facebookId;
 @property (readonly) NSNumber * senateClass;
 @property (readonly) NSDate * birthdate;
+
 @property (readonly) NSString * fullName;
+@property (readonly) NSString * parentheticalSeat;
+@property (readonly) NSString * partyLetter;
 
 - (id)initWithBioguideId:(NSString *)bioguideId;
 - (void)requestInformation;

@@ -48,6 +48,8 @@
 @synthesize senateClass = _senateClass;
 @synthesize birthdate = _birthdate;
 @synthesize fullName;
+@synthesize parentheticalSeat;
+@synthesize partyLetter;
 
 - (id)initWithBioguideId:(NSString *)bioguideId {
     self = [super init];
@@ -158,6 +160,26 @@
 
 - (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@",_firstname,_lastname];
+}
+
+- (NSString *)parentheticalSeat {
+    return [NSString stringWithFormat:@"(%@ - %@ %@)",[self partyLetter],[self state],[self district]];
+}
+
+- (NSString *)partyLetter {
+    switch ([_party intValue]) {
+        case Democrat :
+            return @"D";
+            break;
+        case Republican :
+            return @"R";
+            break;
+        case Independent :
+            return @"I";
+            break;
+        default:
+            return nil;
+    }
 }
 
 @end

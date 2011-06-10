@@ -154,7 +154,7 @@
         if (cell == nil) {
             cell = [[[NSBundle mainBundle] loadNibNamed:@"AbbreviatedLegislatorTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
-        [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] fullName]];
+        [(UILabel *)[cell viewWithTag:1] setText:[NSString stringWithFormat:@"%@ %@",[[floorUpdates objectAtIndex:indexPath.row] fullName],[[floorUpdates objectAtIndex:indexPath.row] parentheticalSeat]]];
         return cell;
     } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[Bill class]]) {
         static NSString *CellIdentifier = @"AbbreviatedBillCell";
