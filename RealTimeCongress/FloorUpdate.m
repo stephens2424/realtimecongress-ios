@@ -21,6 +21,7 @@
 @synthesize textViewHeightRequired;
 @synthesize legislators = _legislators;
 @synthesize bills = _bills;
+@synthesize hasAbbreviations;
 
 - (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date {
     self = [super init];
@@ -71,6 +72,15 @@
 
 - (void)addBill:(Bill *)bill {
     [_legislators addObject:bill];
+}
+
+- (BOOL)hasAbbreviations {
+    if ([_bills count] > 0)
+        return YES;
+    else if ([_legislators count] > 0)
+        return YES;
+    else
+        return NO;
 }
 
 - (void)dealloc

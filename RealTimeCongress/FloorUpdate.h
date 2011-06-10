@@ -30,6 +30,7 @@
 @property (readonly) CGFloat textViewHeightRequired;
 @property (readonly) NSSet * legislators;
 @property (readonly) NSSet * bills;
+@property (readonly) BOOL hasAbbreviations;
 
 - (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date;
 - (void)addLegislator:(Legislator *)legislator;

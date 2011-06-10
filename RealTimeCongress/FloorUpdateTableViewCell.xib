@@ -60,6 +60,7 @@
 										<int key="NSvFlags">265</int>
 										<string key="NSFrame">{{20, 0}, {280, 19}}</string>
 										<reference key="NSSuperview" ref="836067524"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="413316092"/>
 										<object class="NSColor" key="IBUIBackgroundColor" id="785754645">
 											<int key="NSColorSpace">3</int>
@@ -75,7 +76,7 @@
 										</object>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<string key="IBUIText">Date</string>
-										<object class="NSFont" key="IBUIFont" id="227859928">
+										<object class="NSFont" key="IBUIFont" id="609091024">
 											<string key="NSName">Helvetica</string>
 											<double key="NSSize">14</double>
 											<int key="NSfFlags">16</int>
@@ -95,6 +96,7 @@
 										<int key="NSvFlags">272</int>
 										<string key="NSFrame">{{20, 27}, {247, 36}}</string>
 										<reference key="NSSuperview" ref="836067524"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="528506947"/>
 										<reference key="IBUIBackgroundColor" ref="785754645"/>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -110,7 +112,7 @@
 										<bool key="IBUIBouncesZoom">NO</bool>
 										<bool key="IBUIEditable">NO</bool>
 										<string key="IBUIText">Legislative Event</string>
-										<reference key="IBUIFont" ref="227859928"/>
+										<reference key="IBUIFont" ref="609091024"/>
 										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 											<int key="IBUIAutocapitalizationType">2</int>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,9 +120,10 @@
 									</object>
 									<object class="IBUIImageView" id="528506947">
 										<reference key="NSNextResponder" ref="836067524"/>
-										<int key="NSvFlags">274</int>
+										<int key="NSvFlags">-2147483374</int>
 										<string key="NSFrame">{{275, 25}, {25, 25}}</string>
 										<reference key="NSSuperview" ref="836067524"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -136,6 +139,7 @@
 								</object>
 								<string key="NSFrameSize">{320, 76}</string>
 								<reference key="NSSuperview" ref="433532029"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="259801895"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -149,6 +153,7 @@
 						</object>
 						<string key="NSFrameSize">{320, 76}</string>
 						<reference key="NSSuperview" ref="22218909"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="836067524"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -163,6 +168,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 76}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="433532029"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -270,7 +276,19 @@
 			<nil key="sourceID"/>
 			<int key="maxID">12</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">FloorUpdateViewController</string>
+					<string key="superclassName">UITableViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/FloorUpdateViewController.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">

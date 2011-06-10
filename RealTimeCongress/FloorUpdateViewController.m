@@ -69,6 +69,7 @@
 - (void)refresh {
     page = 0;
     [floorUpdates removeAllObjects];
+    [rotatedCellIndexes removeAllObjects];
     [floorUpdates addObject:@"LoadingRow"];
     [self.tableView reloadData];
 }
@@ -174,8 +175,11 @@
         [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] displayDate]];
         [(UITextView *)[cell viewWithTag:2] setFrame:CGRectMake([cell viewWithTag:2].frame.origin.x, [cell viewWithTag:2].frame.origin.y, [cell viewWithTag:2].frame.size.width,[[floorUpdates objectAtIndex:indexPath.row] textViewHeightRequired])];
         [(UITextView *)[cell viewWithTag:2] setText:[[floorUpdates objectAtIndex:indexPath.row] displayText]];
-        if ([rotatedCellIndexes containsObject:indexPath])
-             ((UIView *)[cell viewWithTag:3]).transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
+        if ([[floorUpdates objectAtIndex:indexPath.row] hasAbbreviations]) {
+            ((UIView *)[cell viewWithTag:3]).hidden = NO;
+            if ([rotatedCellIndexes containsObject:indexPath])
+                ((UIView *)[cell viewWithTag:3]).transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
+        }
         return cell;
     } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[Legislator class]]) {
         static NSString *CellIdentifier = @"AbbreviatedLegislatorCell";
