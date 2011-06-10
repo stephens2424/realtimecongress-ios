@@ -42,6 +42,8 @@
 {
     [super viewDidLoad];
     self.title = @"About";
+    
+    // Loads the HTML file from the application bundle
     NSString *path = [[NSBundle mainBundle] pathForResource:@"AboutInfo" ofType:@"html"];
     NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
     
