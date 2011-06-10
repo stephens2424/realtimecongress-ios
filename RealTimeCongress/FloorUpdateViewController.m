@@ -237,7 +237,7 @@
         CABasicAnimation *halfTurn;
         halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
         halfTurn.fromValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
-        halfTurn.toValue = [NSNumber numberWithFloat:0];
+        halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
         halfTurn.duration = 0.25;
         halfTurn.repeatCount = 1;
         [button.layer addAnimation:halfTurn forKey:@"180"];
