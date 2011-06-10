@@ -157,20 +157,40 @@
         self.committeeHearingsCell = nil;
     }
     //Calculate the correct size for each UILabel
-    UILabel *label;
+    UILabel *committeeNameLabel;
     UILabel *timeAndPlaceLabel;
-    label = (UILabel *)[cell viewWithTag:1];
-    label.text = [[[parsedHearingData objectAtIndex:indexPath.row] 
-                   objectForKey:@"committee"] objectForKey:@"name"];
-    [label sizeToFitFixedWidth:320];
+    UILabel *descriptionLabel;
     
+    //Position Committee Name text
+    committeeNameLabel = (UILabel *)[cell viewWithTag:1];
+    committeeNameLabel.text = [[[parsedHearingData objectAtIndex:indexPath.row] 
+                   objectForKey:@"committee"] objectForKey:@"name"];
+    [committeeNameLabel sizeToFitFixedWidth:320];
+    
+    //Position Time and Place text
     timeAndPlaceLabel = (UILabel *)[cell viewWithTag:2];
-    timeAndPlaceLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[parsedHearingData objectAtIndex:indexPath.row] 
-                   objectForKey:@"time_of_day"], [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"room"]];
-    timeAndPlaceLabel.frame = CGRectMake(label.frame.origin.x, 
-                                         (label.frame.origin.y + label.frame.size.height + 1), 320, 0);
+    if (parsedHearingData != NULL) {
+        if (chamberControl.selectedSegmentIndex == 0) {
+            timeAndPlaceLabel.text = [NSString stringWithFormat:@"%@", 
+                                      [[parsedHearingData objectAtIndex:indexPath.row] 
+                                        objectForKey:@"time_of_day"]];
+        }
+        else {
+            timeAndPlaceLabel.text = [NSString stringWithFormat:@"%@ (%@)", 
+                                      [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"time_of_day"], [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"room"]];
+        }
+    }
+    timeAndPlaceLabel.frame = CGRectMake(committeeNameLabel.frame.origin.x, 
+                                         (committeeNameLabel.frame.origin.y + committeeNameLabel.frame.size.height),320, 0);
     [timeAndPlaceLabel sizeToFitFixedWidth:320];
     
+    //Position Description text
+    descriptionLabel = (UILabel *)[cell viewWithTag:3];
+    descriptionLabel.text = [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"description"];
+    descriptionLabel.frame = CGRectMake(committeeNameLabel.frame.origin.x, 
+                                        (timeAndPlaceLabel.frame.origin.y + timeAndPlaceLabel.frame.size.height), 
+                                        320, 0);
+    [descriptionLabel sizeToFitFixedWidth:320];
     
     return cell;
 
@@ -184,7 +204,25 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    //Calculates the appropriate row height based on the size of the three text labels
+    CGSize maxSize = CGSizeMake(320, CGFLOAT_MAX);
+    
+    CGSize committeeNameTextSize = [[[[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"committee"] objectForKey:@"name"] sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:maxSize];
+    
+    CGSize timeAndPlaceTextSize;
+    if (chamberControl.selectedSegmentIndex == 0) {
+        timeAndPlaceTextSize = [[NSString stringWithFormat:@"%@", 
+                                 [[parsedHearingData objectAtIndex:indexPath.row] 
+                                  objectForKey:@"time_of_day"]] sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:maxSize];
+    }
+    else {
+        timeAndPlaceTextSize = [[NSString stringWithFormat:@"%@ (%@)", 
+                                 [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"time_of_day"], [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"room"]] sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:maxSize];
+    }
+    
+    CGSize descriptionTextSize = [[[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"description"] sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:maxSize];
+    
+    return (committeeNameTextSize.height + timeAndPlaceTextSize.height + descriptionTextSize.height + 5);
 }
 
 #pragma mark - UI Actions

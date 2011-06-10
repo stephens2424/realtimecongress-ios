@@ -32,7 +32,7 @@
 @property(nonatomic,retain) IBOutlet UISegmentedControl *chamberControl;
 @property(nonatomic,retain) NSEnumerator *hearingEnumerator;
 @property(nonatomic,retain) NSMutableArray *allHearings;
-@property(nonatomic,retain) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property(nonatomic,retain) UIActivityIndicatorView *loadingIndicator;
 @property(nonatomic,retain) NSOperationQueue *opQueue;
 @property (nonatomic, assign) IBOutlet UITableViewCell *committeeHearingsCell;
 
