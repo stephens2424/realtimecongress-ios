@@ -11,7 +11,7 @@
 
 @implementation FloorUpdate
 
-#define kTextViewFontSize        17.0 //This matches the height of the font in the UITextView in the nib (FloorUpdateTableViewCell.xib)
+#define kTextViewFontSize        14.0 //This matches the height of the font in the UITextView in the nib (FloorUpdateTableViewCell.xib)
 
 @synthesize displayText = _displayText;
 @synthesize date = _date;
@@ -56,7 +56,7 @@
 
 - (CGFloat)textHeight {
     if (_textHeight == -1) {
-        _textHeight = [_displayText sizeWithFont:[UIFont systemFontOfSize:kTextViewFontSize] constrainedToSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 50.0, 10000.0) lineBreakMode:UILineBreakModeWordWrap].height;
+        _textHeight = [_displayText sizeWithFont:[UIFont systemFontOfSize:kTextViewFontSize] constrainedToSize:CGSizeMake(230, 10000.0) lineBreakMode:UILineBreakModeWordWrap].height;
     }
     return _textHeight;
 }
