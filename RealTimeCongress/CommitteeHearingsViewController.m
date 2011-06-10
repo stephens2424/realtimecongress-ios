@@ -158,10 +158,19 @@
     }
     //Calculate the correct size for each UILabel
     UILabel *label;
+    UILabel *timeAndPlaceLabel;
     label = (UILabel *)[cell viewWithTag:1];
     label.text = [[[parsedHearingData objectAtIndex:indexPath.row] 
                    objectForKey:@"committee"] objectForKey:@"name"];
     [label sizeToFitFixedWidth:320];
+    
+    timeAndPlaceLabel = (UILabel *)[cell viewWithTag:2];
+    timeAndPlaceLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[parsedHearingData objectAtIndex:indexPath.row] 
+                   objectForKey:@"time_of_day"], [[parsedHearingData objectAtIndex:indexPath.row] objectForKey:@"room"]];
+    timeAndPlaceLabel.frame = CGRectMake(label.frame.origin.x, 
+                                         (label.frame.origin.y + label.frame.size.height + 1), 320, 0);
+    [timeAndPlaceLabel sizeToFitFixedWidth:320];
+    
     
     return cell;
 
