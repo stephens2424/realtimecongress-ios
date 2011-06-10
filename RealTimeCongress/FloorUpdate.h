@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Legislator.h"
+#import "Bill.h"
 
 @interface FloorUpdate : NSObject {
 @private
@@ -16,6 +17,9 @@
     NSDate * _date;
     NSString * _displayDate;
     CGFloat _textHeight;
+    
+    NSMutableSet * _legislators;
+    NSMutableSet * _bills;
 }
 
 @property (readonly) NSString * displayText;
@@ -24,7 +28,11 @@
 @property (readonly) NSString * displayTextWithDate;
 @property (readonly) CGFloat textHeight;
 @property (readonly) CGFloat textViewHeightRequired;
+@property (readonly) NSSet * legislators;
+@property (readonly) NSSet * bills;
 
 - (id)initWithDisplayText:(NSString *)text atDate:(NSDate *)date;
+- (void)addLegislator:(Legislator *)legislator;
+- (void)addBill:(Bill *)bill;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "SunlightLabsConnection.h"
+@class FloorUpdate;
 
 @interface FloorUpdateViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate> {
     @private
@@ -17,6 +18,7 @@
     NSMutableArray * rotatedButtons;
 }
 
-- (IBAction)toggleDetail:(UIButton *)sender;
+- (NSArray *)addDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin;
+- (NSArray *)removeDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin;
 
 @end

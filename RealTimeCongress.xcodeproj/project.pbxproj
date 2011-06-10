@@ -110,7 +110,6 @@
 		2AAA219C1385701000680E9B /* WhipNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AAA219A1385701000680E9B /* WhipNoticeViewController.m */; };
 		2AAA219D1385701000680E9B /* WhipNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */; };
 		DC1C3F6E13A13E62009829AC /* CongressionalArtifact.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */; };
-		DC1C3F7113A1FDFD009829AC /* downArrowAntiAliased.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */; };
 		DC1C3F7313A20298009829AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1C3F7213A20298009829AC /* QuartzCore.framework */; };
 		DC20A228139AB4F500CDF09C /* SunlightLabsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */; };
 		DC20A229139AB4F500CDF09C /* SunlightLabsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DC20A225139AB4F500CDF09C /* SunlightLabsRequest.m */; };
@@ -120,6 +119,10 @@
 		DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */; };
 		DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC7B29C0139AB27500BC803C /* APIKeys.plist */; };
 		DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */; };
+		DCAC77A713A28B8700F82F13 /* downArrowAntiAliased.png in Resources */ = {isa = PBXBuildFile; fileRef = DCAC77A513A28B8700F82F13 /* downArrowAntiAliased.png */; };
+		DCAC77A813A28B8700F82F13 /* downArrowAntiAliased@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCAC77A613A28B8700F82F13 /* downArrowAntiAliased@2x.png */; };
+		DCAC77AA13A28DFD00F82F13 /* AbbreviatedLegislatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAC77A913A28DFD00F82F13 /* AbbreviatedLegislatorTableViewCell.xib */; };
+		DCAC77AC13A28ED200F82F13 /* AbbreviatedBillTableVivewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCAC77AB13A28ED200F82F13 /* AbbreviatedBillTableVivewCell.xib */; };
 		DCD63D7C13A062BB00BBDB61 /* Legislator.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD63D7B13A062BB00BBDB61 /* Legislator.m */; };
 		DCF4750D139AAFA500803EF5 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF474F4139AAFA500803EF5 /* JSONKit.m */; };
 /* End PBXBuildFile section */
@@ -246,7 +249,6 @@
 		2AAA219B1385701000680E9B /* WhipNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhipNoticeViewController.xib; sourceTree = "<group>"; };
 		DC1C3F6C13A13E62009829AC /* CongressionalArtifact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongressionalArtifact.h; sourceTree = "<group>"; };
 		DC1C3F6D13A13E62009829AC /* CongressionalArtifact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongressionalArtifact.m; sourceTree = "<group>"; };
-		DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = downArrowAntiAliased.png; path = Resources/downArrowAntiAliased.png; sourceTree = SOURCE_ROOT; };
 		DC1C3F7213A20298009829AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DC20A222139AB4F500CDF09C /* SunlightLabsConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SunlightLabsConnection.h; sourceTree = "<group>"; };
 		DC20A223139AB4F500CDF09C /* SunlightLabsConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SunlightLabsConnection.m; sourceTree = "<group>"; };
@@ -261,6 +263,10 @@
 		DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateViewController.xib; sourceTree = "<group>"; };
 		DC7B29C0139AB27500BC803C /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = APIKeys.plist; path = RealTimeCongress.xcodeproj/APIKeys.plist; sourceTree = SOURCE_ROOT; };
 		DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FloorUpdateTableViewCell.xib; sourceTree = "<group>"; };
+		DCAC77A513A28B8700F82F13 /* downArrowAntiAliased.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downArrowAntiAliased.png; sourceTree = "<group>"; };
+		DCAC77A613A28B8700F82F13 /* downArrowAntiAliased@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrowAntiAliased@2x.png"; sourceTree = "<group>"; };
+		DCAC77A913A28DFD00F82F13 /* AbbreviatedLegislatorTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbbreviatedLegislatorTableViewCell.xib; sourceTree = "<group>"; };
+		DCAC77AB13A28ED200F82F13 /* AbbreviatedBillTableVivewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbbreviatedBillTableVivewCell.xib; sourceTree = "<group>"; };
 		DCD63D7A13A062BB00BBDB61 /* Legislator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Legislator.h; sourceTree = "<group>"; };
 		DCD63D7B13A062BB00BBDB61 /* Legislator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Legislator.m; sourceTree = "<group>"; };
 		DCF474F2139AAFA500803EF5 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -338,6 +344,8 @@
 				DC20A237139B5E0000CDF09C /* FloorUpdateViewController.m */,
 				DC8E127A139C39F8001FB254 /* FloorUpdateTableViewCell.xib */,
 				DC20A238139B5E0000CDF09C /* FloorUpdateViewController.xib */,
+				DCAC77A913A28DFD00F82F13 /* AbbreviatedLegislatorTableViewCell.xib */,
+				DCAC77AB13A28ED200F82F13 /* AbbreviatedBillTableVivewCell.xib */,
 				2A787ECA138310E8008EC17E /* RealTimeCongressAppDelegate.m */,
 				2A787ECC138310E8008EC17E /* MainWindow.xib */,
 				2A787ECF138310E8008EC17E /* RootViewController.h */,
@@ -389,7 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				284C0610138C21C600ED309D /* AboutInfo.html */,
-				DC1C3F7013A1FDFD009829AC /* downArrowAntiAliased.png */,
+				DCAC77A513A28B8700F82F13 /* downArrowAntiAliased.png */,
+				DCAC77A613A28B8700F82F13 /* downArrowAntiAliased@2x.png */,
 				2A787EFA138324D1008EC17E /* 08-chat.png */,
 				2A787EFB138324D1008EC17E /* 08-chat@2x.png */,
 				2A787EFC138324D1008EC17E /* 09-chat-2.png */,
@@ -673,7 +682,10 @@
 				DC7B29C1139AB27500BC803C /* APIKeys.plist in Resources */,
 				DC20A23A139B5E0000CDF09C /* FloorUpdateViewController.xib in Resources */,
 				DC8E127B139C39F8001FB254 /* FloorUpdateTableViewCell.xib in Resources */,
-				DC1C3F7113A1FDFD009829AC /* downArrowAntiAliased.png in Resources */,
+				DCAC77A713A28B8700F82F13 /* downArrowAntiAliased.png in Resources */,
+				DCAC77A813A28B8700F82F13 /* downArrowAntiAliased@2x.png in Resources */,
+				DCAC77AA13A28DFD00F82F13 /* AbbreviatedLegislatorTableViewCell.xib in Resources */,
+				DCAC77AC13A28ED200F82F13 /* AbbreviatedBillTableVivewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

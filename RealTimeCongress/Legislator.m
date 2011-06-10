@@ -47,6 +47,15 @@
 @synthesize facebookId = _facebookId;
 @synthesize senateClass = _senateClass;
 @synthesize birthdate = _birthdate;
+@synthesize fullName;
+
+- (id)initWithBioguideId:(NSString *)bioguideId {
+    self = [super init];
+    if (self) {
+        _bioguideId = bioguideId;
+    }
+    return self;
+}
 
 - (void)requestInformation {
     if (_connection) {
@@ -55,17 +64,17 @@
     }
     SunlightLabsRequest * request;
     if ([_informationAvailibilityDictionary objectForKey:@"bioguideId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_bioguideId,@"bioguide_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_bioguideId,@"bioguide_id", nil] multiple:NO];
     } else if ([_informationAvailibilityDictionary objectForKey:@"votesmartId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_votesmartId,@"votesmart_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_votesmartId,@"votesmart_id", nil] multiple:NO];
     } else if ([_informationAvailibilityDictionary objectForKey:@"fecId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_fecId,@"fec_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_fecId,@"fec_id", nil] multiple:NO];
     } else if ([_informationAvailibilityDictionary objectForKey:@"govTrackId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_govTrackId,@"govtrack_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_govTrackId,@"govtrack_id", nil] multiple:NO];
     } else if ([_informationAvailibilityDictionary objectForKey:@"crpId"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_crpId,@"crp_id", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_crpId,@"crp_id", nil] multiple:NO];
     } else if ([_informationAvailibilityDictionary objectForKey:@"lastname"] == InformationAvailable) {
-        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_lastname,@"lastname", nil]];
+        request = [[SunlightLabsRequest alloc] initLegislatorRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:_lastname,@"lastname", nil] multiple:NO];
     } else {
         [self receiveInformation:[NSNotification notificationWithName:nil object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSError errorWithDomain:@"CongressModel" code:1000 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Not enough information to identify artifact of Congress",@"NSLocalizedDescriptionKey", nil]],@"error", nil]]];
         return;
@@ -78,7 +87,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:ReceivedCongressionalInformationNotification object:self userInfo:[notification userInfo]];
         _abbreviated = YES;
     } else {
-        NSDictionary * data = [notification userInfo];
+        NSDictionary * data = [[[notification userInfo] objectForKey:@"response"] objectForKey:@"legislator"];
         _title = [[data objectForKey:@"title"] retain];
         _firstname = [[data objectForKey:@"firstname"] retain];
         _middlename = [[data objectForKey:@"middlename"] retain];
@@ -103,7 +112,7 @@
         }
         _state = [[data objectForKey:@"state"] retain];
         _district = [[data objectForKey:@"district"] retain];
-        if ([[data objectForKey:@"in_office"] isEqualToString:@"1"]) {
+        if ([data objectForKey:@"in_office"]) {
             _inOffice = [[NSNumber alloc] initWithBool:YES];
         } else {
             _inOffice = [[NSNumber alloc] initWithBool:NO];
@@ -145,6 +154,10 @@
         _abbreviated = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:ReceivedCongressionalInformationNotification object:self];
     }
+}
+
+- (NSString *)fullName {
+    return [NSString stringWithFormat:@"%@ %@",_firstname,_lastname];
 }
 
 @end
