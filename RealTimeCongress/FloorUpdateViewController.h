@@ -16,6 +16,7 @@
     SunlightLabsConnection * connection;
     NSMutableArray * floorUpdates;
     NSMutableArray * rotatedCellIndexes;
+    NSUInteger page;
 }
 
 - (NSArray *)addDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin;

@@ -35,9 +35,10 @@
 }
 
 - (void)receiveFloorUpdate:(NSNotification *)notification {
+    [connection release];
     NSDictionary * userInfo = [notification userInfo];
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    
+    NSMutableArray * tempFloorUpdates = [NSMutableArray arrayWithCapacity:20];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     NSMutableString * floorUpdateText = [NSMutableString stringWithCapacity:100];
@@ -54,9 +55,14 @@
             [floorUpdate addLegislator:legislator];
         }
         //TODO add bill and roll call references.
-        [floorUpdates addObject:floorUpdate];
+        [tempFloorUpdates addObject:floorUpdate];
         [floorUpdateText setString:@""];
     }
+    id last = [[floorUpdates lastObject] retain];
+    [floorUpdates removeObject:[floorUpdates lastObject]];
+    [floorUpdates addObjectsFromArray:tempFloorUpdates];
+    [floorUpdates addObject:last];
+    [last release];
     [self.tableView reloadData];
 }
 
@@ -81,11 +87,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    page = 0;
     floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
+    [floorUpdates addObject:[NSNull null]];
     rotatedCellIndexes = [[NSMutableArray alloc] initWithCapacity:3];
-    connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:nil] autorelease]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFloorUpdate:) name:SunglightLabsRequestFinishedNotification object:connection];
-    [connection sendRequest];
     [super viewWillAppear:animated];
 }
 
@@ -133,6 +138,14 @@
         return 44.0;
     }
 }
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [floorUpdates indexOfObject:[floorUpdates lastObject]]) {
+        page += 1;
+        connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ul",page],@"page", nil]] autorelease]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFloorUpdate:) name:SunglightLabsRequestFinishedNotification object:connection];
+        [connection sendRequest];
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -163,6 +176,13 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"AbbreviatedBillTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
         [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] shortTitle]];
+        return cell;
+    } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[NSNull class]]) {
+        static NSString *CellIdentifier = @"LoadingCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LoadingTableViewCell" owner:self options:nil] objectAtIndex:0];
+        }
         return cell;
     } else {
         static NSString * cellIdentifier = @"Cell";
