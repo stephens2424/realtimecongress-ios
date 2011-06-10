@@ -17,6 +17,7 @@
     NSMutableArray * floorUpdates;
     NSMutableArray * rotatedCellIndexes;
     NSUInteger page;
+    UISegmentedControl * control;
 }
 
 - (NSArray *)addDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin;

@@ -66,12 +66,18 @@
     [self.tableView reloadData];
 }
 
+- (void)refresh {
+    page = 0;
+    [floorUpdates removeAllObjects];
+    [floorUpdates addObject:[NSNull null]];
+    [self.tableView reloadData];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -87,6 +93,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationItem.title = @"Floor Updates";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    self.navigationController.toolbarHidden = NO;
+    control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Senate",@"House",nil]];
+    [control setSelectedSegmentIndex:0];
+    [control addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.navigationController.toolbar.barStyle = UIBarStyleBlack;
+    [self setToolbarItems:[NSArray arrayWithObjects:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],[[[UIBarButtonItem alloc] initWithCustomView:control] autorelease],[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],nil]];
     page = 0;
     floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
     [floorUpdates addObject:[NSNull null]];
@@ -106,6 +120,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [control release];
     [floorUpdates release];
     [rotatedCellIndexes release];
     [super viewDidDisappear:animated];
@@ -141,7 +156,8 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == [floorUpdates indexOfObject:[floorUpdates lastObject]]) {
         page += 1;
-        connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ul",page],@"page", nil]] autorelease]];
+        NSString * chamber = [control selectedSegmentIndex] == 0 ? @"senate" : @"house";
+        connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ul",page],@"page",chamber,@"chamber", nil]] autorelease]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFloorUpdate:) name:SunglightLabsRequestFinishedNotification object:connection];
         [connection sendRequest];
     }
