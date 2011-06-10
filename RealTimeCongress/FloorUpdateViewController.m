@@ -82,7 +82,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
-    rotatedButtons = [[NSMutableArray alloc] initWithCapacity:3];
+    rotatedCellIndexes = [[NSMutableArray alloc] initWithCapacity:3];
     connection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:[[[SunlightLabsRequest alloc] initFloorUpdateRequestWithParameters:nil] autorelease]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveFloorUpdate:) name:SunglightLabsRequestFinishedNotification object:connection];
     [connection sendRequest];
@@ -102,7 +102,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [floorUpdates release];
-    [rotatedButtons release];
+    [rotatedCellIndexes release];
     [super viewDidDisappear:animated];
 }
 
@@ -145,7 +145,7 @@
         [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] displayDate]];
         [(UITextView *)[cell viewWithTag:2] setFrame:CGRectMake([cell viewWithTag:2].frame.origin.x, [cell viewWithTag:2].frame.origin.y, [cell viewWithTag:2].frame.size.width,[[floorUpdates objectAtIndex:indexPath.row] textViewHeightRequired])];
         [(UITextView *)[cell viewWithTag:2] setText:[[floorUpdates objectAtIndex:indexPath.row] displayText]];
-        if ([rotatedButtons containsObject:[cell viewWithTag:3]])
+        if ([rotatedCellIndexes containsObject:indexPath])
              ((UIView *)[cell viewWithTag:3]).transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
         return cell;
     } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[Legislator class]]) {
@@ -222,7 +222,7 @@
     UIView * button = [[tableView cellForRowAtIndexPath:indexPath] viewWithTag:3];
     [CATransaction begin];
     [tableView beginUpdates];
-    if (![rotatedButtons containsObject:button]) {
+    if (![rotatedCellIndexes containsObject:indexPath]) {
         CABasicAnimation *halfTurn;
         halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
         halfTurn.fromValue = [NSNumber numberWithFloat:0];
@@ -231,7 +231,7 @@
         halfTurn.repeatCount = 1;
         [button.layer addAnimation:halfTurn forKey:@"180"];
         button.transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
-        [rotatedButtons addObject:button];
+        [rotatedCellIndexes addObject:indexPath];
         [tableView insertRowsAtIndexPaths:[self addDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     } else {
         CABasicAnimation *halfTurn;
@@ -242,7 +242,7 @@
         halfTurn.repeatCount = 1;
         [button.layer addAnimation:halfTurn forKey:@"180"];
         button.transform = CGAffineTransformMakeRotation( 0 );
-        [rotatedButtons removeObject:button];
+        [rotatedCellIndexes removeObject:indexPath];
         [tableView deleteRowsAtIndexPaths:[self removeDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }
     [tableView endUpdates];

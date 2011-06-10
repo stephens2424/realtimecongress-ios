@@ -15,7 +15,7 @@
     @private
     SunlightLabsConnection * connection;
     NSMutableArray * floorUpdates;
-    NSMutableArray * rotatedButtons;
+    NSMutableArray * rotatedCellIndexes;
 }
 
 - (NSArray *)addDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin;
