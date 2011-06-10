@@ -69,7 +69,7 @@
 - (void)refresh {
     page = 0;
     [floorUpdates removeAllObjects];
-    [floorUpdates addObject:[NSNull null]];
+    [floorUpdates addObject:@"LoadingRow"];
     [self.tableView reloadData];
 }
 
@@ -103,7 +103,7 @@
     [self setToolbarItems:[NSArray arrayWithObjects:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],[[[UIBarButtonItem alloc] initWithCustomView:control] autorelease],[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],nil]];
     page = 0;
     floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
-    [floorUpdates addObject:[NSNull null]];
+    [floorUpdates addObject:@"LoadingRow"];
     rotatedCellIndexes = [[NSMutableArray alloc] initWithCapacity:3];
     [super viewWillAppear:animated];
 }
@@ -193,7 +193,7 @@
         }
         [(UILabel *)[cell viewWithTag:1] setText:[[floorUpdates objectAtIndex:indexPath.row] shortTitle]];
         return cell;
-    } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[NSNull class]]) {
+    } else if ([[floorUpdates objectAtIndex:indexPath.row] isEqual:@"LoadingRow"]) {
         static NSString *CellIdentifier = @"LoadingCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -286,8 +286,6 @@
 }
 
 #pragma mark - Detail expansion
-
-//insert an NSNull in the row where a detail cell will go. create a detail dictionary that has the cell index as the key and the detail information as the object. table view delegate can use that.
 
 - (NSArray *)addDetailDataAndCreateIndexPaths:(FloorUpdate *)floorUpdate origin:(NSIndexPath *)origin {
     NSMutableArray * array = [NSMutableArray arrayWithCapacity:5];
