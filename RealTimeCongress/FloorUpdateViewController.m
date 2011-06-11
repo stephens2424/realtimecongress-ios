@@ -149,7 +149,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[FloorUpdate class]]) {
-        return [[floorUpdates objectAtIndex:indexPath.row] textHeight] + 55; //55 = the height of the table cell wihtout the event text (76 - 21)
+        return [[floorUpdates objectAtIndex:indexPath.row] textHeight] + 60; //55 = the height of the table cell wihtout the event text (76 - 21)
     } else {
         return 44.0;
     }
