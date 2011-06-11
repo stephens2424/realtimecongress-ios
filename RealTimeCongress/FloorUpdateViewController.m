@@ -118,7 +118,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     self.navigationController.toolbarHidden = NO;
     control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Senate",@"House",nil]];
-    [control setSelectedSegmentIndex:0];
+    [control setSelectedSegmentIndex:1];
     [control addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     [self setToolbarItems:[NSArray arrayWithObjects:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],[[[UIBarButtonItem alloc] initWithCustomView:control] autorelease],[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],nil]];
