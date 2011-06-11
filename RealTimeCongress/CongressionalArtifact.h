@@ -31,5 +31,6 @@ typedef enum {
 
 - (void)requestInformationWithRequest:(SunlightLabsRequest *)request;
 - (void)receiveInformation:(NSNotification *)notification;
+- (void)cancelRequest;
 
 @end

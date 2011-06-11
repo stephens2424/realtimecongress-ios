@@ -24,4 +24,15 @@
     _connection = nil;
 }
 
+- (void)cancelRequest {
+    if (_connection) {
+        [_connection cancel];
+    }
+}
+
+- (void)dealloc {
+    [_connection release];
+    _connection = nil;
+}
+
 @end

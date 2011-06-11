@@ -60,6 +60,7 @@
 }
 
 - (void)requestInformation {
+    _informationRequested = YES;
     if (_connection) {
         [self receiveInformation:[NSNotification notificationWithName:nil object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSError errorWithDomain:@"CongressModel" code:1001 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Connection already in progress for this artifact of congress.",@"NSLocalizedDescriptionKey", nil]],@"error", nil]]];
         return;

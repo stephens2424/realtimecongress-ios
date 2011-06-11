@@ -15,9 +15,11 @@ static NSString * SunglightLabsRequestFinishedNotification = @"SunglightLabsRequ
 @private
     SunlightLabsRequest * _request;
     NSMutableData * _receivedData;
+    BOOL _cancelled;
 }
 - (id)initWithSunlightLabsRequest:(SunlightLabsRequest *)request;
 - (void)sendRequest;
+- (void)cancel;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;

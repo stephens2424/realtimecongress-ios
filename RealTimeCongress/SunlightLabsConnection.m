@@ -17,6 +17,7 @@
     if (self) {
         _request = [request retain];
         _receivedData = [[NSMutableData alloc] initWithCapacity:10];
+        _cancelled = NO;
     }
     return self;
 }
@@ -25,15 +26,27 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection connectionWithRequest:[_request request] delegate:self];
 }
+- (void)cancel {
+    _cancelled = YES;
+}
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [_receivedData appendData:data];
+    if (_cancelled) {
+        [connection cancel];
+    } else {
+        [_receivedData appendData:data];
+    }
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Sunlight Labs Connection did fail with error:%@",error);
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSDictionary * decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
-    [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:decodedData];
+    NSDictionary * decodedData;
+    if (!_cancelled) {
+        decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
+    }
+    if (!_cancelled) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:decodedData];
+    }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

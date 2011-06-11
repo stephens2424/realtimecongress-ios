@@ -10,7 +10,7 @@
 #import "Legislator.h"
 #import "Bill.h"
 
-@interface FloorUpdate : NSObject {
+@interface FloorUpdate : CongressionalArtifact {
 @private
     NSString * _displayText;
     NSString * _displayTextWithDate;

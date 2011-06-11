@@ -10,6 +10,20 @@
 #import "FloorUpdate.h"
 #import "SunlightLabsRequest.h"
 
+@interface NSString (CancelRequest)
+
+- (void)cancelRequest;
+
+@end
+
+@implementation NSString (CancelRequest)
+
+- (void)cancelRequest {
+    
+}
+
+@end
+
 @implementation FloorUpdateViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,6 +50,7 @@
 
 - (void)receiveFloorUpdate:(NSNotification *)notification {
     [connection release];
+    connection = nil;
     NSDictionary * userInfo = [notification userInfo];
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     NSMutableArray * tempFloorUpdates = [NSMutableArray arrayWithCapacity:20];
@@ -68,6 +83,11 @@
 
 - (void)refresh {
     page = 0;
+    if (connection) {
+        [connection cancel];
+        [connection release];
+    }
+    [floorUpdates makeObjectsPerformSelector:@selector(cancelRequest)];
     [floorUpdates removeAllObjects];
     [rotatedCellIndexes removeAllObjects];
     [floorUpdates addObject:@"LoadingRow"];
