@@ -38,6 +38,9 @@
 
 - (void)dealloc
 {
+    [control release];
+    [floorUpdates release];
+    [rotatedCellIndexes release];
     [super dealloc];
 }
 
@@ -124,9 +127,13 @@
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     [self setToolbarItems:[NSArray arrayWithObjects:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],[[[UIBarButtonItem alloc] initWithCustomView:control] autorelease],[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL] autorelease],nil]];
     page = 0;
-    floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
-    [floorUpdates addObject:@"LoadingRow"];
-    rotatedCellIndexes = [[NSMutableArray alloc] initWithCapacity:3];
+    if (!floorUpdates) {
+        floorUpdates = [[NSMutableArray alloc] initWithCapacity:20];
+        [floorUpdates addObject:@"LoadingRow"];
+    }
+    if (!rotatedCellIndexes) {
+        rotatedCellIndexes = [[NSMutableArray alloc] initWithCapacity:3];
+    }
     [super viewWillAppear:animated];
 }
 
@@ -142,9 +149,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [control release];
-    [floorUpdates release];
-    [rotatedCellIndexes release];
     [super viewDidDisappear:animated];
 }
 
