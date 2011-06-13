@@ -137,8 +137,35 @@
         ((UILabel *)[cell viewWithTag:3]).text = [_legislator partyString];
         ((UILabel *)[cell viewWithTag:4]).text = [_legislator state];
         ((UILabel *)[cell viewWithTag:5]).text = [_legislator district];
+    } else if (indexPath.row == 1) {
+        static NSString * CellIdentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"Call: %@",[_legislator phoneNumber]];
+    } else if (indexPath.row == 2) {
+        static NSString * CellIdentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"Voting Record"];
+        cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"58-todo" ofType:@"png"]];
+    } else if (indexPath.row == 3) {
+        static NSString * CellIdentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"Sponsored Bills"];
+        cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"96-book" ofType:@"png"]];
     } else {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        static NSString * CellIdentifier = @"Cell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        }
     }
     return cell;
 }

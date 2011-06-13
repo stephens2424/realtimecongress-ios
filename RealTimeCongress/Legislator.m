@@ -124,8 +124,8 @@
         } else {
             _inOffice = [[NSNumber alloc] initWithBool:NO];
         }
-        _phoneNumber = [[data objectForKey:@"phone_number"] retain];
-        _faxNumber = [[data objectForKey:@"fax_number"] retain];
+        _phoneNumber = [[data objectForKey:@"phone"] retain];
+        _faxNumber = [[data objectForKey:@"fax"] retain];
         if ([data objectForKey:@"website"])
             _website = [[NSURL alloc] initWithString:[data objectForKey:@"website"]];
         if ([data objectForKey:@"web_contact"])
