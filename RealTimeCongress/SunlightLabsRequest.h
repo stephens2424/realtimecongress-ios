@@ -17,13 +17,21 @@ typedef enum {
     CommitteeHearings,
     Documents,
     Legislators,
+    LegislatorPhoto
 } APICollection;
 
 typedef enum {
     RealTimeCongressAPI,
     SunlightCongressAPI,
+    Photo,
     InvalidAPI
 } API;
+
+typedef enum {
+    SmallPhotoSize,
+    MediumPhotoSize,
+    LargePhotoSize
+} PhotoSize;
 
 /**
  A request object to be used with SunlightLabsConnection.
@@ -45,6 +53,7 @@ typedef enum {
 @property (readonly) API api;
 @property (readonly) NSURLRequest * request;
 
+- (id)initRequestWithURLString:(NSString *)requestString;
 /**
  Initializes a SunlightLabsReqeust of the given type with the given parameters.
  @param parameters A dictionary containing the query parameters that will become part of the request URL.
@@ -53,9 +62,9 @@ typedef enum {
  @return A SunglightLabsRequest object.
  */
 - (id)initRequestWithParameterDictionary:(NSDictionary *)parameters APICollection:(APICollection)apiCollection APIMethod:(NSString *)apiMethod;
-
 - (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters;
 - (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters multiple:(BOOL)multiple;
 - (id)initFloorUpdateRequestWithParameters:(NSDictionary *)parameters;
+- (id)initLegislatorPhotoRequest:(NSString *)bioguideId withSize:(PhotoSize)size;
 
 @end

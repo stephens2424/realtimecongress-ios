@@ -33,6 +33,7 @@
 - (void)dealloc {
     [_connection release];
     _connection = nil;
+    [super dealloc];
 }
 
 @end

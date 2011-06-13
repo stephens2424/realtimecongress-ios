@@ -9,6 +9,7 @@
 #import "FloorUpdateViewController.h"
 #import "FloorUpdate.h"
 #import "SunlightLabsRequest.h"
+#import "LegislatorViewController.h"
 
 @interface NSString (CancelRequest)
 
@@ -276,37 +277,41 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[FloorUpdate class]]) {
-        return;
+    if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[FloorUpdate class]]) {
+        UIView * button = [[tableView cellForRowAtIndexPath:indexPath] viewWithTag:3];
+        [CATransaction begin];
+        [tableView beginUpdates];
+        if (![rotatedCellIndexes containsObject:indexPath]) {
+            CABasicAnimation *halfTurn;
+            halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+            halfTurn.fromValue = [NSNumber numberWithFloat:0];
+            halfTurn.toValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
+            halfTurn.duration = 0.25;
+            halfTurn.repeatCount = 1;
+            [button.layer addAnimation:halfTurn forKey:@"180"];
+            button.transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
+            [rotatedCellIndexes addObject:indexPath];
+            [tableView insertRowsAtIndexPaths:[self addDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        } else {
+            CABasicAnimation *halfTurn;
+            halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+            halfTurn.fromValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
+            halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+            halfTurn.duration = 0.25;
+            halfTurn.repeatCount = 1;
+            [button.layer addAnimation:halfTurn forKey:@"180"];
+            button.transform = CGAffineTransformMakeRotation( 0 );
+            [rotatedCellIndexes removeObject:indexPath];
+            [tableView deleteRowsAtIndexPaths:[self removeDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        }
+        [tableView endUpdates];
+        [CATransaction commit];
+    } else if ([[floorUpdates objectAtIndex:indexPath.row] isMemberOfClass:[Legislator class]]) {
+        LegislatorViewController *legislatorViewController = [[LegislatorViewController alloc] initWithNibName:@"LegislatorViewController" bundle:nil];
+        [legislatorViewController setLegislator:[floorUpdates objectAtIndex:indexPath.row]];
+        [self.navigationController pushViewController:legislatorViewController animated:YES];
+        [legislatorViewController release];
     }
-    UIView * button = [[tableView cellForRowAtIndexPath:indexPath] viewWithTag:3];
-    [CATransaction begin];
-    [tableView beginUpdates];
-    if (![rotatedCellIndexes containsObject:indexPath]) {
-        CABasicAnimation *halfTurn;
-        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        halfTurn.fromValue = [NSNumber numberWithFloat:0];
-        halfTurn.toValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
-        halfTurn.duration = 0.25;
-        halfTurn.repeatCount = 1;
-        [button.layer addAnimation:halfTurn forKey:@"180"];
-        button.transform = CGAffineTransformMakeRotation( ( 180 * M_PI ) / 180 );
-        [rotatedCellIndexes addObject:indexPath];
-        [tableView insertRowsAtIndexPaths:[self addDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
-    } else {
-        CABasicAnimation *halfTurn;
-        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        halfTurn.fromValue = [NSNumber numberWithFloat:((180*M_PI)/180)];
-        halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
-        halfTurn.duration = 0.25;
-        halfTurn.repeatCount = 1;
-        [button.layer addAnimation:halfTurn forKey:@"180"];
-        button.transform = CGAffineTransformMakeRotation( 0 );
-        [rotatedCellIndexes removeObject:indexPath];
-        [tableView deleteRowsAtIndexPaths:[self removeDetailDataAndCreateIndexPaths:[floorUpdates objectAtIndex:indexPath.row] origin:indexPath] withRowAnimation:UITableViewRowAnimationTop];
-    }
-    [tableView endUpdates];
-    [CATransaction commit];
 }
 
 #pragma mark - Detail expansion

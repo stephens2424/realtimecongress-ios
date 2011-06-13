@@ -62,8 +62,10 @@ typedef enum {
     NSNumber * _senateClass;
     NSDate * _birthdate;
     NSMutableDictionary * _informationAvailibilityDictionary;
-    
+    UIImage * _photo;
     BOOL _informationRequested;
+    BOOL _photoRequested;
+    SunlightLabsConnection * _photoConnection;
 }
 
 @property (readonly) NSString * title;
@@ -94,12 +96,15 @@ typedef enum {
 @property (readonly) NSString * facebookId;
 @property (readonly) NSNumber * senateClass;
 @property (readonly) NSDate * birthdate;
+@property (readonly) UIImage * photo;
 
 @property (readonly) NSString * fullName;
 @property (readonly) NSString * parentheticalSeat;
 @property (readonly) NSString * partyLetter;
+@property (readonly) NSString * partyString;
 
 - (id)initWithBioguideId:(NSString *)bioguideId;
 - (void)requestInformation;
+- (void)requestPhoto;
 
 @end

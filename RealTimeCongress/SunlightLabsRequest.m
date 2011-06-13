@@ -10,6 +10,33 @@
 
 static NSString * RealTimeCongressBasePath = @"http://api.realtimecongress.org/api/v1/";
 static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/api/";
+static NSString * LegislatorPhotoBasePath = @"http://assets.sunlightfoundation.com/moc/";
+
+@interface SunlightLabsRequest (Hidden)
+
++ (NSString *)photoSizeString:(PhotoSize)size;
+
+@end
+
+@implementation SunlightLabsRequest (Hidden)
+
++ (NSString *)photoSizeString:(PhotoSize)size {
+    switch (size) {
+        case SmallPhotoSize :
+            return @"40x50";
+            break;
+        case MediumPhotoSize :
+            return @"100x125";
+            break;
+        case LargePhotoSize :
+            return @"200x250";
+            break;
+        default:
+            return @"100x125";
+    }
+}
+
+@end
 
 @implementation SunlightLabsRequest
 
@@ -42,6 +69,10 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
             break;
         case Legislators:
             return [NSMutableString stringWithFormat:@"%@%@",SunlightCongressBasePath,@"legislators"];
+            break;
+        case LegislatorPhoto:
+            return [NSMutableString stringWithFormat:@"%@",LegislatorPhotoBasePath];
+            break;
         default:
             return nil;
             break;
@@ -79,27 +110,28 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
             break;
     }
 }
-
-- (id)initRequestWithParameterDictionary:(NSDictionary *)parameters APICollection:(APICollection)apiCollection APIMethod:(NSString *)apiMethod {
+- (id)initRequestWithURLString:(NSString *)requestString {
     self = [super init];
     if (self) {
-        _requestCollection = apiCollection;
-        _api = [SunlightLabsRequest APIFromRequestType:apiCollection];
-        NSMutableString * requestURLString = [[SunlightLabsRequest basePathFromRequestType:apiCollection] retain];
-        if (apiMethod) [requestURLString appendFormat:@".%@",apiMethod];
-        [requestURLString appendString:@".json?"];
-        //the following line appends the apikey to the url. here for debugging purposes. the line to add the apikey to the header is commented out below
-        [requestURLString appendFormat:@"apikey=%@&",[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"]];
-        if (parameters) {
-            for (NSString * key in parameters) {
-                [requestURLString appendFormat:@"%@=%@&",key,[parameters objectForKey:key]];
-            }
-        }
-        _urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestURLString]];
-        [requestURLString release];
+        _urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestString]];
         //[_urlRequest addValue:[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"] forHTTPHeaderField:@"X-APIKEY"];
     }
     return self;
+}
+- (id)initRequestWithParameterDictionary:(NSDictionary *)parameters APICollection:(APICollection)apiCollection APIMethod:(NSString *)apiMethod {
+    _requestCollection = apiCollection;
+    _api = [SunlightLabsRequest APIFromRequestType:apiCollection];
+    NSMutableString * requestURLString = [SunlightLabsRequest basePathFromRequestType:apiCollection];
+    if (apiMethod) [requestURLString appendFormat:@".%@",apiMethod];
+    [requestURLString appendString:@".json?"];
+    //the following line appends the apikey to the url. here for debugging purposes. the line to add the apikey to the header is commented out below
+    [requestURLString appendFormat:@"apikey=%@&",[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"APIKeys" ofType:@"plist"]] objectForKey:@"SunlightLabsKey"]];
+    if (parameters) {
+        for (NSString * key in parameters) {
+            [requestURLString appendFormat:@"%@=%@&",key,[parameters objectForKey:key]];
+        }
+    }
+    return [self initRequestWithURLString:requestURLString];
 }
 - (id)initLegislatorRequestWithParameters:(NSDictionary *)parameters {
     return [self initLegislatorRequestWithParameters:parameters multiple:YES];
@@ -110,6 +142,11 @@ static NSString * SunlightCongressBasePath = @"http://services.sunlightlabs.com/
 }
 - (id)initFloorUpdateRequestWithParameters:(NSDictionary *)parameters {
     return [self initRequestWithParameterDictionary:parameters APICollection:FloorUpdates APIMethod:nil];
+}
+- (id)initLegislatorPhotoRequest:(NSString *)bioguideId withSize:(PhotoSize)size {
+    _api = Photo;
+    _requestCollection = LegislatorPhoto;
+    return [self initRequestWithURLString:[NSString stringWithFormat:@"%@%@/%@.jpg",LegislatorPhotoBasePath,[SunlightLabsRequest photoSizeString:size],bioguideId]];
 }
 - (void)dealloc
 {

@@ -13,6 +13,7 @@
 @interface Legislator (Private)
 
 - (void)receiveInformation:(NSNotification *)notification;
+- (void)receivePhoto:(NSNotification *)notification;
 
 @end
 
@@ -47,9 +48,12 @@
 @synthesize facebookId = _facebookId;
 @synthesize senateClass = _senateClass;
 @synthesize birthdate = _birthdate;
+@synthesize photo = _photo;
+
 @synthesize fullName;
 @synthesize parentheticalSeat;
 @synthesize partyLetter;
+@synthesize partyString;
 
 - (id)initWithBioguideId:(NSString *)bioguideId {
     self = [super init];
@@ -159,6 +163,23 @@
     }
 }
 
+- (void)requestPhoto {
+    if (!_photoConnection && !_photo) {
+        _photoRequested = YES;
+        SunlightLabsRequest * photoRequest = [[SunlightLabsRequest alloc] initLegislatorPhotoRequest:_bioguideId withSize:MediumPhotoSize];
+        _photoConnection = [[SunlightLabsConnection alloc] initWithSunlightLabsRequest:photoRequest];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePhoto:) name:SunglightLabsRequestFinishedNotification object:_photoConnection];
+        [_photoConnection sendRequest];
+        [photoRequest release];
+    }
+}
+- (void)receivePhoto:(NSNotification *)notification {
+    [_photoConnection release];
+    _photoConnection = nil;
+    _photo = [[[notification userInfo] objectForKey:@"photo"] retain];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ReceivedCongressionalInformationNotification object:self userInfo:[NSDictionary dictionaryWithObject:self forKey:@"legislator"]];
+}
+
 - (NSString *)fullName {
     return [NSString stringWithFormat:@"%@ %@",_firstname,_lastname];
 }
@@ -177,6 +198,22 @@
             break;
         case Independent :
             return @"I";
+            break;
+        default:
+            return nil;
+    }
+}
+
+- (NSString *)partyString {
+    switch ([_party intValue]) {
+        case Democrat :
+            return @"Democrat";
+            break;
+        case Republican :
+            return @"Republican";
+            break;
+        case Independent :
+            return @"Independent";
             break;
         default:
             return nil;

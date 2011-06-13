@@ -8,6 +8,7 @@
 
 #import "SunlightLabsConnection.h"
 #import "SunlightLabsRequest.h"
+#import "SunlightLabsConnectionTracker.h"
 #import "JSONKit.h"
 
 @implementation SunlightLabsConnection
@@ -23,7 +24,7 @@
 }
 
 - (void)sendRequest {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [[SunlightLabsConnectionTracker sharedInstance] addConnection];
     [NSURLConnection connectionWithRequest:[_request request] delegate:self];
 }
 - (void)cancel {
@@ -38,16 +39,21 @@
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Sunlight Labs Connection did fail with error:%@",error);
+    [[SunlightLabsConnectionTracker sharedInstance] reduceConnection];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSDictionary * decodedData;
-    if (!_cancelled) {
-        decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
+    if ([_request api] == Photo) {
+        decodedData = [NSDictionary dictionaryWithObject:[UIImage imageWithData:_receivedData] forKey:@"photo"];
+    } else {
+        if (!_cancelled) {
+            decodedData = [[[JSONDecoder decoder] objectWithData:_receivedData] retain];
+        }
     }
     if (!_cancelled) {
         [[NSNotificationCenter defaultCenter] postNotificationName:SunglightLabsRequestFinishedNotification object:self userInfo:decodedData];
     }
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [[SunlightLabsConnectionTracker sharedInstance] reduceConnection];
 }
 
 - (void)dealloc
