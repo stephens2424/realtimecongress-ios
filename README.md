@@ -1,6 +1,6 @@
 # Real Time Congress for iOS
 
-Built by the Sunlight Foundation. Available on the [App Store](http://itunes.com/apps/realtimecongress).
+Built by the Sunlight Foundation. Available on the [App Store](http://itunes.apple.com/us/app/real-time-congress/id346005313?mt=8).
 
 ## Present vs. Future
 
