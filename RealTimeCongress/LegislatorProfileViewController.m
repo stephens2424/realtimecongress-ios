@@ -90,11 +90,7 @@
 }
 
 - (void)refreshData:(NSNotification *)notification {
-    if (![[[notification userInfo] objectForKey:@"legislator"] isEqual:_legislator]) {
-        [self setLegislator:[[notification userInfo] objectForKey:@"legislator"]];
-    } else {
-        [self.tableView reloadData];
-    }
+    [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
