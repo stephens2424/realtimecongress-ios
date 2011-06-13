@@ -44,8 +44,8 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:ReceivedCongressionalInformationNotification object:_legislator];
     }
     _legislator = [legislator retain];
-    [legislator requestPhoto];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:ReceivedCongressionalInformationNotification object:legislator];
+    [_legislator requestPhoto];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData:) name:ReceivedCongressionalInformationNotification object:_legislator];
     [self.tableView reloadData];
 }
 
@@ -90,10 +90,10 @@
 }
 
 - (void)refreshData:(NSNotification *)notification {
-    if ([[[notification userInfo] objectForKey:@"legislator"] isEqual:_legislator]) {
-        [self.tableView reloadData];
-    } else {
+    if (![[[notification userInfo] objectForKey:@"legislator"] isEqual:_legislator]) {
         [self setLegislator:[[notification userInfo] objectForKey:@"legislator"]];
+    } else {
+        [self.tableView reloadData];
     }
 }
 
